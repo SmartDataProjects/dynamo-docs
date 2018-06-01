@@ -11,7 +11,15 @@ Introduction
 
 The moment we accumulate data of a larger volume the question of how to do Data Management arises. Even with this problem being a very old and well-studied one no single solution has emerged. The reason is that Data Management has to be appropriate to address the specific set of requirements and work in the given environment. Those factors have a strong influence on the design of such a tool.
 
-The LHC experiments, and in particular the CMS experiment, has a tiered computing approach in which in the order of 100 sites provide storage for the data. These sites are rather heterogenoeus in terms of size, local mass storage technology, level of support *etc*. Tier-1 centers (7 for CMS) provide tape systems in which most of the data is permanantly stored.
+The LHC experiments, and in particular the CMS experiment, has a tiered computing approach in which in the order of 100 sites provide storage for the data. These sites are rather heterogenoeus in terms of size, local mass storage technology, level of support *etc*. Tier-1 centers (7 for CMS) provide tape systems in which most of the data is permanently stored.
+
+The initial approach in CMS towards data management was to ensure that datasets[#f1]_ can be efficiently and safely transfered from one storage site to the other implementing a rich set of permissions to identify who is allowed to do what. Sites were put in charge to install local software agents to execute transfers and communicate with the central agents about their progress.
+
+The intelligence about which data was supposed to be available and at what sites was supposed to be implemented by the data managers that were appointed by the specific physics or detector groups who claimed ownership of the specific data. Each group had specific 3-5 Tier-2 sites at their disposal to be filled with the datasets of interest. It required some coordination to decide who was in charge of the large detector data because most of the data samples for example SingleMuons are used by all physics groups. The Monte Carlo simulation data though was a completely different level of coordination which quickly caused a lot of headaches because there were much more samples and the ownership issue was similarly complex.
+
+For the first few years this concept worked because there was ample space, a lot of interest and support from the sites and the data managers, and relatively few datasets. Over time, sites and data managers had less resources and with the rapidly growing amount of data and number of datasets a real problem developed. There was a large need for automation which was particularly evident in the Computing Operations Organization at the time.
+
+Dynamo was developed with the goal to eliminate 
 
 
 Conceptual Design
@@ -22,3 +30,7 @@ Essential Components
 
 Plugins
 -------
+
+.. rubric:: Footnotes
+
+.. [#f1] Data in CMS or mainly organized in datasets which ultimately contain a bunch of files.
