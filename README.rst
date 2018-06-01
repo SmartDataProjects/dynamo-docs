@@ -11,7 +11,7 @@ Introduction
 
 The moment we accumulate data of a larger volume the question of how to do Data Management arises. Even with this problem being a very old and well-studied one no single solution has emerged. The reason is that Data Management has to be appropriate to address the specific set of requirements and work in the given environment. Those factors have a strong influence on the design of such a tool.
 
-The LHC experiments, and in particular the CMS experiment, has a tiered computing approach in which in the order of 100 sites provide storage for the data. These sites are rather heterogenoeus in terms of size, local mass storage technology, level of support _etc_. Tier-1 centers (7 for CMS) provide tape systems in which most of the data is permanantly stored.
+The LHC experiments, and in particular the CMS experiment, has a tiered computing approach in which in the order of 100 sites provide storage for the data. These sites are rather heterogenoeus in terms of size, local mass storage technology, level of support *etc*. Tier-1 centers (7 for CMS) provide tape systems in which most of the data is permanantly stored.
 
 
 Conceptual Design
