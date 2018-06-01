@@ -9,9 +9,11 @@ As the package evolved from the CMS environment it was initially coupled to the 
 Introduction
 ------------
 
-The moment we accumulate data of a larger volume the question of how to do Data Management arises. Even with this problem being a very old and well-studied one no single solution has emerged. The reason is that Data Management has to be appropriate to address the specific set of requirements and work in the given environment. Those factors have a strong influence on the design of such a tool.
+The moment we accumulate data of a large volume the question of how to do Data Management arises. Even with this problem being a very old and well-studied one no single solution has emerged. The reason is that Data Management has to be appropriate to address the specific set of requirements and work in the given environment. Those factors have a strong influence on the design of such tools.
 
-The LHC experiments, and in particular the CMS experiment, has a tiered computing approach in which in the order of 100 sites provide storage for the data. These sites are rather heterogenoeus in terms of size, local mass storage technology, level of support *etc*. Tier-1 centers (7 for CMS) provide tape systems in which most of the data is permanently stored.
+The LHC experiments, and in particular the CMS experiment, has a tiered computing approach in which in the order of 100 sites provide storage for the data. These sites are rather heterogenoeus in terms of size, local mass storage technology, level of support *etc*. Tier-1 centers (7 for CMS) provide tape systems in which most of the data is permanently stored but not immediatly accessible. Some of the data are accessed very frequently other less frequently and the majority of data in the end will be accessed only in exceptional situations. The available disk storage is not sufficient to keep all data readily available, thus important decisions have to be taken which data to keep on disk and in how many copies and where.
+
+Data usage in the experiment can be subdivided into two big classes: production access and analysis/user access. The biggest difference between the two is that production access is predictable while user analysis is inherently unpredictable. As an example the re-processing of the 2016 data is carefully planned and the necessary inputs can be staged from tape without causing any delay to the reprocessing schedule. User analysis would immediately suffer if data is not available on disk and in sufficient copies to avoid bottlenecks.
 
 The initial approach in CMS towards data management was to ensure that datasets[#f1]_ can be efficiently and safely transfered from one storage site to the other implementing a rich set of permissions to identify who is allowed to do what. Sites were put in charge to install local software agents to execute transfers and communicate with the central agents about their progress.
 
@@ -19,7 +21,7 @@ The intelligence about which data was supposed to be available and at what sites
 
 For the first few years this concept worked because there was ample space, a lot of interest and support from the sites and the data managers, and relatively few datasets. Over time, sites and data managers had less resources and with the rapidly growing amount of data and number of datasets a real problem developed. There was a large need for automation which was particularly evident in the Computing Operations Organization at the time.
 
-Dynamo was developed with the goal to eliminate 
+Dynamo was developed with the goal to eliminate human interactions with the Data Management system and at the same time optimize the way the storage is used to hold the data for the user analysis and for the data production system (Detector and Monte Carlo simulation).
 
 
 Conceptual Design
