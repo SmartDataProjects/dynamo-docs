@@ -32,17 +32,29 @@ Dynamo was developed with the goal to eliminate human interactions with the Data
 Becoming aware of those important points made CMS rethink their data management model. A number of important simplifications were introduced and new features added.
 
  1. Sites were opened to any datasets that users or production were interested in
- 2. The majority of user groups were deprecated while maintaining two main groups: Analysis and Production
+ 2. The majority of owner groups were deprecated while maintaining two main groups: Analysis and Production
  3. Policies were introduced to fill disk space automatically with popular data replicas, while removing less popular data replicas
  4. A fully automatized site consistency enforcement was introduced to address any failures in the data management system
- 5. A fully automatic site evacuation was introduced to quickly deal with major site failures
+ 5. A fully automatic site evacuation was introduced to quickly and efficiently deal with major site failures
  6. An interface to the batch submission system to allow for automatic tape staging for data required by the users but not available on disk was provided
     
 Conceptual Design
 -----------------
 
-To accomplish the above 
+To resolve the above described problem we designed Dynamo based on a few fundamental ideas.
 
+ 1. Disks that are not filled with data are for sure never used and thus wasted
+ 2. Disks should give preference to popular data following some metric
+ 3. Sites have to operate safely and space should not be filled significantly beyond 90%
+ 4. Minimize the need for interaction with the storage sites involved and run it centrally
+ 5. Disk space availability varies significantly with time: adjustments of the data management policies to deal with these variations have to be straight forward and transparent
+ 6. Partitioning of disk space should be avoided as much as possible as it reduces the flexibility of the storage usage and effectively reduces the available disk space
+ 6. In a heterogenous distributed storage, failures of many different types are unavoidable and the system has to be able to automatically identify failures and recover from them
+ 7. The site reliability must be accounted for when distributing data
+ 8. Make the key components pluggable to allow for evolution of the dependent packages
+ 9. Fast turnaround is essential to minimize race conditions
+
+With this in mind the storage in CMS is maintained in one big partition which is called 'Physics'. Storage sites are added to the partition with a quota for how much space they provide.
 
 Essential Components
 --------------------
