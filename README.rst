@@ -49,10 +49,10 @@ To resolve the above described problem we designed Dynamo based on a few fundame
  4. Minimize the need for interaction with the storage sites involved and run it centrally
  5. Disk space availability varies significantly with time: adjustments of the data management policies to deal with these variations have to be straight forward and transparent
  6. Partitioning of disk space should be avoided as much as possible as it reduces the flexibility of the storage usage and effectively reduces the available disk space
- 6. In a heterogenous distributed storage, failures of many different types are unavoidable and the system has to be able to automatically identify failures and recover from them
- 7. The site reliability must be accounted for when distributing data
- 8. Make the key components pluggable to allow for evolution of the dependent packages
- 9. Fast turnaround is essential to minimize race conditions
+ 7. In a heterogenous distributed storage, failures of many different types are unavoidable and the system has to be able to automatically identify failures and recover from them
+ 8. The site reliability must be accounted for when distributing data
+ 9. Make the key components pluggable to allow for evolution of the dependent packages
+ 10. Fast turnaround is essential to minimize race conditions
 
 With this in mind the storage in CMS is maintained in one big partition which is called 'Physics'. Storage sites are added to the partition with a quota for how much space they provide.
 
