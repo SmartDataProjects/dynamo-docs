@@ -19,18 +19,30 @@ The initial approach in CMS towards data management was to ensure that datasets[
 
 The intelligence about which data was supposed to be available and at what sites was supposed to be implemented by the data managers that were appointed by the specific physics or detector groups who claimed ownership of the specific data. Each group had specific 3-5 Tier-2 sites at their disposal to be filled with the datasets of interest. It required some coordination to decide who was in charge of the large detector data because most of the data samples for example SingleMuons are used by all physics groups. The Monte Carlo simulation data though was a completely different level of coordination which quickly caused a lot of headaches because there were much more samples and the ownership issue was similarly complex.
 
-For the first few years this concept worked because there was enough disk space, a lot of interest and support from the sites and the data managers, and relatively few datasets. Over time, sites and data managers had less resources and with the rapidly growing amount of data and number of datasets a real problem developed. There was a large need for automation which was particularly evident in the Computing Operations organization at the time.
+For the first few years this concept worked because there was enough disk space, a lot of interest and support from the sites and the data managers, and relatively few datasets. Over time, sites and data managers had less resources and with the rapidly growing amount of data and number of datasets a real problem developed. Another important development was that the stict rule of re-processing the detector and Monte Carlo simulation data only at the Tier-1 sites placed a major bottleneck on the production process. Moving the re-processing also to the Tier-2 sites meant a subtantial increase in data transfers which became impossible to support with the Computing Operations team.
+In short, there was a large need for automation which was particularly evident in the Computing Operations organization at the time.
 
-Dynamo was developed with the goal to eliminate human interactions with the Data Management system and at the same time optimize the way the storage is used to hold the data for the user analysis and for the data production system (Detector and Monte Carlo simulation). There were a number of important conclusions reached.
+Dynamo was developed with the goal to eliminate human interactions with the Data Management system and at the same time optimize the way the storage is used to hold the data for the user analysis and for the data production system (Detector and Monte Carlo simulation). There were a number of key conclusions reached.
 
- 1. Physics and detector groups did not need and want to manage their own data
- 2. Sites did not need and want to manage the exact data content of their storage
- 3. Users did not care were their jobs ran as long as they would finish successfully and quickly
- 4. Production desperately needed a automatic way to spread the data around on the sites as the artifically imposed re-processing constraints were lifted
+ 1. Users did not care where their jobs ran as long as they would finish successfully and quickly
+ 2. Physics and detector groups did not want to manage their own data
+ 3. Sites did not want to manage the exact data content of their storage
+ 4. Production desperately needed an automatic way to spread the data around on all production sites with the least amount of effort
 
+Becoming aware of those important points made CMS rethink their data management model. A number of important simplifications were introduced and new features added.
 
+ 1. Sites were opened to any datasets that users or production were interested in
+ 2. The majority of user groups were deprecated while maintaining two main groups: Analysis and Production
+ 3. Policies were introduced to fill disk space automatically with popular data replicas, while removing less popular data replicas
+ 4. A fully automatized site consistency enforcement was introduced to address any failures in the data management system
+ 5. A fully automatic site evacuation was introduced to quickly deal with major site failures
+ 6. An interface to the batch submission system to allow for automatic tape staging for data required by the users but not available on disk was provided
+    
 Conceptual Design
 -----------------
+
+To accomplish the above 
+
 
 Essential Components
 --------------------
