@@ -19,9 +19,14 @@ The initial approach in CMS towards data management was to ensure that datasets[
 
 The intelligence about which data was supposed to be available and at what sites was supposed to be implemented by the data managers that were appointed by the specific physics or detector groups who claimed ownership of the specific data. Each group had specific 3-5 Tier-2 sites at their disposal to be filled with the datasets of interest. It required some coordination to decide who was in charge of the large detector data because most of the data samples for example SingleMuons are used by all physics groups. The Monte Carlo simulation data though was a completely different level of coordination which quickly caused a lot of headaches because there were much more samples and the ownership issue was similarly complex.
 
-For the first few years this concept worked because there was ample space, a lot of interest and support from the sites and the data managers, and relatively few datasets. Over time, sites and data managers had less resources and with the rapidly growing amount of data and number of datasets a real problem developed. There was a large need for automation which was particularly evident in the Computing Operations Organization at the time.
+For the first few years this concept worked because there was enough disk space, a lot of interest and support from the sites and the data managers, and relatively few datasets. Over time, sites and data managers had less resources and with the rapidly growing amount of data and number of datasets a real problem developed. There was a large need for automation which was particularly evident in the Computing Operations organization at the time.
 
-Dynamo was developed with the goal to eliminate human interactions with the Data Management system and at the same time optimize the way the storage is used to hold the data for the user analysis and for the data production system (Detector and Monte Carlo simulation).
+Dynamo was developed with the goal to eliminate human interactions with the Data Management system and at the same time optimize the way the storage is used to hold the data for the user analysis and for the data production system (Detector and Monte Carlo simulation). There were a number of important conclusions reached.
+
+ 1. Physics and detector groups did not need and want to manage their own data
+ 2. Sites did not need and want to manage the exact data content of their storage
+ 3. Users did not care were their jobs ran as long as they would finish successfully and quickly
+ 4. Production desperately needed a automatic way to spread the data around on the sites as the artifically imposed re-processing constraints were lifted
 
 
 Conceptual Design
