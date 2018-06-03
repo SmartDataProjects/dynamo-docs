@@ -46,15 +46,15 @@ To resolve the above described problem we designed Dynamo based on a few fundame
  1. Disks that are not filled with data are for sure never used and thus wasted, so we keep site storage above a minimum watermark [#]_
  2. Storage usage should be proportional to data popularity following some metric
  3. Sites have to operate safely and space should not be filled significantly beyond a high watermark threshold
- 4. Minimize the need for interaction with the storage sites involved and run it centrally
+ 4. Minimize the need for interaction with the storage sites involved, and run it centrally
  5. Disk space availability varies significantly with time: adjustments of the data management policies to deal with these variations have to be straight forward and transparent including the use of tape storage
  6. Partitioning of disk space should be avoided as much as possible as it reduces the flexibility of the storage usage and effectively reduces the available disk space
  7. In a heterogeneous distributed storage, failures of many different types are unavoidable and the system has to be able to automatically identify failures and recover from them
  8. The site reliability must be accounted for when distributing data
- 9. Make the key components pluggable to allow for evolution of the dependent packages
+ 9. Make the key components pluggable to allow for evolution of the external packages
  10. Fast turnaround is essential to minimize race conditions
 
-With these ideas in mind the overall storage in CMS is maintained in one big partition which is called 'Physics'. Storage sites are added to the partition with a quota for how much space they provide. Each site is kept below a high water mark threshold. If incoming transfers push the site storage above the high watermark deletion is triggered. The deletion will be removing the least popular samples until the low watermark is reached, while at the same time fulfilling all other set policies.
+With these ideas in mind the overall storage in CMS is maintained in one big partition which is called 'Physics'. Storage sites are added to the partition with a quota for how much space they provide. Each site is kept below a high water mark threshold. If incoming transfers push the site storage above the high watermark deletion is triggered. The deletion will be removing the least popular samples until the low watermark is reached, while at the same time fulfilling all other set policies. The system is almost [#]_ freely running, which means subscriptions to sites are made even if they push the site over the high water mark.  This mechanism insures that unpopular data (replicas or last copies) will be regularly purged at all sites.
 
 If the experiment runs out of storage the system will eventually fail to delete and the sites will run full. In CMS it is the responsibility of the data management team to alert the physics organization and call for a review of the policies to make adjustments so that data fit. As we will discuss in the following policies are very flexible and powerful and easy to adjust at run time to meet the requirements.
 
@@ -69,4 +69,5 @@ Plugins
 .. rubric:: Footnotes
 
 .. [#] Data in CMS or mainly organized in datasets which ultimately contain a bunch of files.
-.. [#] IN CMS we are using a low watermark of 85% while the high watermark is set to 90%.
+.. [#] In CMS we are using a low watermark of 85% while the high watermark is set to 90%.
+.. [#] Subscriptions though will not go beyond the quota considering the projected size of all data at a given storage site.
