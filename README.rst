@@ -58,7 +58,7 @@ With these ideas in mind the overall storage in CMS is maintained in one big par
 
 If the experiment runs out of storage the system will eventually fail to delete and the sites will run full. In CMS it is the responsibility of the data management team to alert the physics organization and call for a review of the policies to make adjustments so that data fit. As we will discuss in the following policies are very flexible and powerful and easy to adjust at runtime to meet the requirements.
 
-Dynamo has a policy language [] which allows to write separate policy files for the given partition and the groups belonging to that partition. The `policy files <https://github.com/SmartDataProjects/dynamo-policies>`_ are parsed by the various components of the system and data actions (deletions and subscriptions) are issued such that the policies are met once the actions are completed.
+Dynamo has a `policy language <https://github.com/SmartDataProjects/dynamo/tree/master/lib/policy>` which allows to write separate policy files for the given partition and the groups belonging to that partition. The `policy files <https://github.com/SmartDataProjects/dynamo-policies>`_ are parsed by the various components of the system and data actions (deletions and subscriptions) are issued such that the policies are met once the actions are completed.
 
 Dynamo maintains a number of smaller very specialized partitions with separate site and quota configurations. There are the Release Validation partition and the Express data partition which have very specific requirements which are implemented in Dynamo's policy language.
 
