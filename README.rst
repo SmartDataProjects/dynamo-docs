@@ -73,8 +73,8 @@ Essential Components
 
 To manage the data across a number of different storage sites Dynamo employs several core component that implement the conceptual design described above. Those components are:
 
- 1. Inventory Server - a process running with the purpose to keep the entire inventory in memory and give extremely fast and controlled access to its content. It also ensures optimized synchronization with the disk based mysql database. The synchronization process is generic and additional fully synchronized inventory servers can be started in parallel to ease the load if needed. They can also be configured to automatically replace the main server if it fails.
- 2. Registry / REST API - 
+ 1. **Inventory Server** - a process running with the purpose to keep the entire inventory in memory and give extremely fast and controlled access to its content. It also ensures optimized synchronization with the disk based mysql database. The synchronization process is generic and additional fully synchronized inventory servers can be started in parallel to ease the load if needed. They can also be configured to automatically replace the main server if it fails.
+ 2. **Registry / REST API** - 
  3. Scheduler
  4. Detox process
  5. Dealer process
