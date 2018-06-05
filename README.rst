@@ -1,3 +1,6 @@
+.. contents:: a title for the contents
+    :depth: 2
+
 Dynamo - Dynamic Data Management System
 =======================================
 
