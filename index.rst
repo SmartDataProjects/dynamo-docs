@@ -1,3 +1,6 @@
+.. Dynamo documentation master file, created by CP on Tue June 5 10:40:30 2018.
+
+
 Dynamo - Dynamic Data Management System
 =======================================
 
@@ -7,12 +10,16 @@ As the package evolved from the CMS environment it was initially coupled to the 
 	    
 .. toctree::
     :maxdepth: 2
-    :numbered:
-    :titlesonly:
-    :glob:
-    :hidden:
 
-    introduction.rst
-    conceptual_design.rst
-    components.rst
-    external_packages.rst
+    introduction
+    conceptual_design
+    components
+    external_packages
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

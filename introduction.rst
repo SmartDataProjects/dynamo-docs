@@ -33,4 +33,3 @@ Becoming aware of those important points made CMS rethink their data management 
 
 .. rubric:: Footnotes
 .. [#] Data in CMS or mainly organized in datasets which ultimately contain a bunch of files.
-
