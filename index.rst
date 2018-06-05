@@ -9,13 +9,15 @@ The development of Dynamo started in 2014 by the CMS Computing Operations organi
 As the package evolved from the CMS environment it was initially coupled to the CMS environment but has in the last half year been decoupled and a standalone version, ready to be used by other experiments, has been produced allowing external specialized plugins for services like the popularity or a master metadata source describing the data. We are looking forward to supporting other efforts where large amount of data has to be managed across a potentially heterogeneous set of storage sites. We do support a fully integrated tape storage.
 	    
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
     introduction
     conceptual_design
     components
     external_packages
-
+    installation
+    typical_operations
+    
 
 Indices and tables
 ==================
