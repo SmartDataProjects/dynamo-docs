@@ -1,4 +1,5 @@
 .. Dynamo documentation master file, created by CP on Tue June 5 10:40:30 2018.
+:maxdepth: 3
 
 
 Dynamo - Dynamic Data Management System
