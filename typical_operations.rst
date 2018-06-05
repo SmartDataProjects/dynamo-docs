@@ -15,7 +15,7 @@ Policies are statements based on operators, regular expression matching and basi
  3. blockreplica
  4. dataset
 
-Their detailed description is given in `here<https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
+Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
 
 
 Setting Up a Basic Policy
