@@ -1,4 +1,4 @@
-.. contents:: a title for the contents
+.. contents:: Table of Content
     :depth: 2
 
 Dynamo - Dynamic Data Management System
