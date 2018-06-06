@@ -49,10 +49,10 @@ Configuration
 There are a few steps to follow before running the installation script:
 
 #. Copy configuration template to default location and edit the contents. Default configuration should work for most cases.
-::
+   ::
 
-   cd dynamo
-   cp dynamo.cfg.template dynamo.cfg 
+      cd dynamo
+      cp dynamo.cfg.template dynamo.cfg 
    
    Installation target directories are configurable. With default settings, files are copied to
 
