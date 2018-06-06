@@ -55,8 +55,15 @@ There are a few steps to follow before running the installation script:
    
    Installation target directories are configurable see the `config file itself <https://github.com/SmartDataProjects/dynamo/blob/master/dynamo.cfg.template>`_ for details.
 
-   The server and all applications will be run under a normal UNIX user, which can be specified in the configuration file but must be created beforehand. (see 'user' line in the 'server' section in the configuration file dynamo.cfg)
+   The server and all applications will be run under a normal UNIX user, which can be specified in the configuration file but must be created beforehand (see 'user' line in the 'server' section in the configuration file dynamo.cfg).
 
+   Please, make sure that the certificates in the server_conf variable exist and are correctly working. To verify you can use a openssl command like:
+   ::
+
+      openssl x509 -in <certificate> -noout -text
+
+   and see whether the certificate is valid under the 'Validity' printout.
+   
 #. Copy `dynamo/mysql/grants.json.template` to `dynamo/mysql/grants.json` and enter the user passwords. This file specifies what user accounts and permissiong grants should be created on the MySQL server. By default, four users are created with different usage classes:
 
    - `dynamosrv` is the MySQL user with full access to all relevant databases. This is the user used by the main Dynamo server. The password for `dynamosrv` should not be readable by normal users.
