@@ -32,7 +32,7 @@ code:
 
 
 A basic policy always starts with setting up a Partition.
-::
+..code-block::
 
    Partition MyCache
 
