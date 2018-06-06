@@ -28,11 +28,11 @@ For the following example we have a Tier-3 center with limited disk space and a 
 
 A basic policy always starts with setting up a Partition.
 ::
-   Partition MyCache
+    Partition MyCache
 
 Define a number of storage sites this partition has access to.
 ::
-   On site.name in [ T2_US_XYZ T3_US_XYZ ]
+    On site.name in [ T2_US_XYZ T3_US_XYZ ]
 
 Set the high and low water mark to define the deletions.
 ::
