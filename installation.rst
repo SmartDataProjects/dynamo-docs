@@ -6,15 +6,15 @@ Presently our installation relies on the person installing having root access an
 Prerequisites
 .............
 
-- A Linux machine with sufficient RAM (~20 GB used for CMS installation with 6 million objects)
+* A Linux machine with sufficient RAM (~20 GB used for CMS installation with 6 million objects)
   - The softsoftware itself does not depend on the distribution, but the server daemon scripts are only written for RHEL 6 and 7.
-- Super-user access to the installation machine
-- Python 2.6 or 2.7
-- MySQL server with root access
-- If REST API is enabled (recommended), an HTTP(S) server with FastCGI capabilities (`Lighttpd <https://www.lighttpd.net/>`_ is recommended)
-- Host X509 certificate
-- User X509 certificates
-- Some non-default Python modules
+* Super-user access to the installation machine
+* Python 2.6 or 2.7
+* MySQL server with root access
+* If REST API is enabled (recommended), an HTTP(S) server with FastCGI capabilities (`Lighttpd <https://www.lighttpd.net/>`_ is recommended)
+* Host X509 certificate
+* User X509 certificates
+* Some non-default Python modules
   - `ssl` (required)
   - `sqlite3` (required)
   - `flup` (required for REST API)

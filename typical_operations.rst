@@ -18,6 +18,11 @@ Policies are statements based on operators, regular expression matching and the 
 
 Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
 
+Adding a Storage Site to the System
+...................................
+
+
+
 
 Setting Up a Basic Policy
 .........................
