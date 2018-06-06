@@ -53,13 +53,7 @@ There are a few steps to follow before running the installation script:
       cd dynamo
       cp dynamo.cfg.template dynamo.cfg 
    
-   Installation target directories are configurable. With default settings, files are copied to
-
-   - `/usr/local/dynamo`: For python libraries, daemon executables, standard applications, web templates, and an init script
-   - `/etc/dynamo`: For configuration files
-   - `/var/log/dynamo`: For server logs
-   - `/var/spool/dynamo`: For scheduler work area
-   - `/local/data/dynamo`: For data archival
+   Installation target directories are configurable see the `config file itself <https://github.com/SmartDataProjects/dynamo/blob/master/dynamo.cfg.template>`_ for details.
 
    The server and all applications will be run under a normal UNIX user, which can be specified in the configuration file but must be created beforehand. (see 'user' line in the 'server' section in the configuration file dynamo.cfg)
 
