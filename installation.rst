@@ -64,21 +64,23 @@ There are a few steps to follow before running the installation script:
 
    and see whether the certificate is valid under the 'Validity' printout.
    
-   #. Copy grants template for mysql to default location and edit the contents. Default configuration should work for most cases.
-
-
-Copy `dynamo/mysql/grants.json.template` to `dynamo/mysql/grants.json` and enter the user passwords. This file specifies what user accounts and permissiong grants should be created on the MySQL server. By default, four users are created with different usage classes:
+#. Copy grants template for mysql to default location and edit the contents.
    ::
 
       cd dynamo
       cp mysql/grants.json.template mysql/grants.json
 
-   - `dynamosrv` is the MySQL user with full access to all relevant databases. This is the user used by the main Dynamo server. The password for `dynamosrv` should not be readable by normal users.
-   - `dynamo` is the MySQL user with full access for all practical purposes running the Dynamo applications.
+   Enter the user passwords. This file specifies what user accounts and permission grants should be created on the MySQL server. By default, four users are created with different usage classes.
+
+   - `dynamosrv` is the MySQL user with full access to all relevant databases. This is the database user account employed by the main Dynamo server. The password for `dynamosrv` should not be readable by normal users.
+   - `dynamo` is the MySQL user with full access for all practical purposes running the Dynamo applications but cannot modify the inventory content.
    - `dynamoread` is the restricted-access MySQL user designed for read-only applications.
-   - `dynamofod` is a MySQL user specialized for performing file transfer and deletion operations.
+   - `dynamofod` is the MySQL user specialized for performing file transfer and deletion operations.
 
    The MySQL users will be created on the fly during the installation if they do not exist already.
+
+   Else the default configuration should work for most cases.
+   
 #. Copy `dynamo/defaults.json.template` to `dynamo/defaults.json` and edit
    - Passwords for MySQL users (three lines; must be identical to what is in grants.json)
    - X509 certificate to be used by the server user when accessing various external HTTPS REST resources (in `utils.interface.webservice:HTTPSCertKeyHandler` block).
