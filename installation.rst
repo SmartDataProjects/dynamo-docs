@@ -11,10 +11,11 @@ Prerequisites
 * Super-user access to the installation machine
 * Python 2.6 or 2.7
 * MySQL server with root access
+* MySQLdb python module, provided by MySQL-python RPM
 * If REST API is enabled (recommended), an HTTP(S) server with FastCGI capabilities (`Lighttpd <https://www.lighttpd.net/>`_ is recommended)
 * Host X509 certificate
 * User X509 certificates
-* Some non-default Python modules
+* Some non-default Python modules (available in e.g. `EPEL <https://fedoraproject.org/wiki/EPEL>`_ repository)
   * `ssl` (required)
   * `sqlite3` (required)
   * `flup` (required for REST API)
