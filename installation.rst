@@ -38,19 +38,18 @@ To install, clone the package, configure, and run the installation script:
    git clone https://github.com/SmartDataProjects/dynamo
    cd dynamo
    
-   # Do the configuration (described below)
+   # Before doing the install please go through configuration (described right below)
    
    ./install.sh
 
-
+   
 Configuration
 .............
 
-Once the libraries are installed, start the service `dynamod` as the super-user.
-
 There are a few steps to follow before running the installation script:
 
-#. Copy `dynamo/dynamo.cfg.template` to `dynamo/dynamo.cfg` and edit the contents. Default configuration should work for most cases
+#. Copy `dynamo/dynamo.cfg.template` to `dynamo/dynamo.cfg` and edit the contents. Default configuration should work for most cases.
+
    Installation target directories are configurable. With default settings, files are copied to
 
    - `/usr/local/dynamo`: For python libraries, daemon executables, standard applications, web templates, and a init script
