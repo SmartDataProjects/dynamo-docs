@@ -9,19 +9,40 @@ The task of adding new data to the system (injection) and invalidating data that
 Policy Building Blocks
 ......................
 
-Policies are statements based on operators, regular expression matching and basic building blocks. Building blocks are:
- 1. sites
- 2. replica
- 3. blockreplica
- 4. dataset
+Policies are statements based on operators, regular expression matching and the basic Dynamo building blocks. Building blocks are:
+ 1. Partition
+ 2. sites
+ 3. replica
+ 4. blockreplica
+ 5. dataset
 
-Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_
+Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
 
 
 Setting Up a Basic Policy
 .........................
 
+A basic policy always starts with setting up a Partition.
+::
+   Partition MyCache
 
+Define a number of storage sites this partition has access to.
+::
+ On site.name in [ T2_US_MIT T3_US_MIT ]
+
+Set the high and low water mark to define the deletions.
+::
+   When site occupancy > 0.9
+   Until site.occupancy < 0.85
+
+Set the default decision for potential deletion which is yes dimiss
+::
+   Dismiss
+
+Now decide what should be deleted first. The setup here uses the rank of the dataset and if they are the same it starts with the small datasets first. The rank is a number which is calculated to indicate how popular the dataset is. The CMS definition is approximately [#]_ the number of days the dataset was not used (we call that the idle days). So, the higher the rank the less popular the sample is.
+::
+   Order decreasing dataset.usage_rank increasing replica.size
+ 
 Managing Quotas
 ...............
 
@@ -37,3 +58,5 @@ Invalidating Data
 Planning Deletion Campaigns
 ...........................
 
+.. rubric:: Footnotes
+.. [#] There are some corrections to the simple number of idle days to make sure that data that has just been copied it not deleted immediately and some adjustments for the size of the sample.
