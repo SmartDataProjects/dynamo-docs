@@ -30,13 +30,18 @@ Define a number of storage sites this partition has access to.
 ::
  On site.name in [ T2_US_MIT T3_US_MIT ]
 
-Set the high and low watermakr to define the deletions.
+Set the high and low water mark to define the deletions.
 ::
- When site occupancy > 0.9
- Until site.occupancy < 0.85
+   When site occupancy > 0.9
+   Until site.occupancy < 0.85
 
+Set the default decision for potential deletion which is yes dimiss
+::
+   Dismiss
 
- 
+Now decide what should be deleted first. The setup here uses the rank of the dataset and if they are the same it starts with the small datasets first. The rank is a number which is calculated to indicate how popular the dataset is. The CMS definition is approximately [#]_ the number of days the dataset was not used (we call that the idle days). So, the higher the rank the less popular the sample is.
+::
+   Order decreasing dataset.usage_rank increasing replica.size
  
 Managing Quotas
 ...............
@@ -53,3 +58,5 @@ Invalidating Data
 Planning Deletion Campaigns
 ...........................
 
+.. rubric:: Footnotes
+.. [#] There are some corrections to the simple number of idle days to make sure that data that has just been copied it not deleted immediately and some adjustments for the size of the sample.
