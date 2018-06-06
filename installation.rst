@@ -36,11 +36,10 @@ To install, clone the package, configure, and run the installation script:
 ::
 
    git clone https://github.com/SmartDataProjects/dynamo
-   cd dynamo
    
    # Before doing the install please go through configuration (described right below)
    
-   ./install.sh
+   ./dynamo/install.sh
 
    
 Configuration
@@ -56,15 +55,14 @@ There are a few steps to follow before running the installation script:
    
    Installation target directories are configurable. With default settings, files are copied to
 
-   - `/usr/local/dynamo`: For python libraries, daemon executables, standard applications, web templates, and a init script
+   - `/usr/local/dynamo`: For python libraries, daemon executables, standard applications, web templates, and an init script
    - `/etc/dynamo`: For configuration files
    - `/var/log/dynamo`: For server logs
    - `/var/spool/dynamo`: For scheduler work area
    - `/local/data/dynamo`: For data archival
 
-   The server and all applications will be run under a normal UNIX user, which can be specified in the configuration file but must be created beforehand.
+   The server and all applications will be run under a normal UNIX user, which can be specified in the configuration file but must be created beforehand. (see 'user' line in the 'server' section in the configuration file dynamo.cfg)
 
-#. Create (if it does not already exist) the UNIX user the server runs under, specified in the `user` line of the `server` section of `dynamo.cfg`.
 #. Copy `dynamo/mysql/grants.json.template` to `dynamo/mysql/grants.json` and enter the user passwords. This file specifies what user accounts and permissiong grants should be created on the MySQL server. By default, four users are created with different usage classes:
 
    - `dynamosrv` is the MySQL user with full access to all relevant databases. This is the user used by the main Dynamo server. The password for `dynamosrv` should not be readable by normal users.
