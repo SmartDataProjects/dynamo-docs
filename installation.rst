@@ -26,7 +26,10 @@ Prerequisites
 Basic Installation
 ..................
 
-The core software and most of the functionalities are contained in the `dynamo <https://github.com/SmartDataProjects/dynamo>`_ package. To install, clone the package, configure, and run the installation script:
+The core software and most of the functionalities are contained in the `dynamo <https://github.com/SmartDataProjects/dynamo>`_ package. To install, clone the package, configure, and run the installation script login as root:
+::
+   su -
+   
 ::
 
   git clone https://github.com/SmartDataProjects/dynamo
