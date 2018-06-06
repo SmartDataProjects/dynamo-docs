@@ -89,7 +89,7 @@ html_theme = 'classic'
 # documentation.
 #
 html_theme_options = {
-    'rightsidebar': True
+    'rightsidebar': False
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
