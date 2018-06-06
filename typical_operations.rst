@@ -27,7 +27,7 @@ It is important to note that the ordering in the policy file matters. Each sampl
 For the following example we have a Tier-3 center with limited disk space and a Tier-2 center where more data can be kept. The analysis data can be entirely maintained inside the Tier-2 quota but the Tier-3 can not hold more than maybe a third. In the below policy stack we simply maintain the most popular samples on the Tier-3 site as long as they fit within the available quota. For the setup here we can assume that the Tier-2 site has a quota large enough to contain all data, thus deletion will never be triggered, but in principle if the usage would be pushed to the high wtaermark on the Tier-2, deletion of the least popular one should be the safest option. More sophisticated schemes can of course be setup.
 
 A basic policy always starts with setting up a Partition.
-:linenos:
+::
 
    Partition MyCache
 
@@ -44,10 +44,12 @@ Set the high and low water mark to define the deletions.
 
 Set the default decision for potential deletion which is 'yes' dimiss.
 ::
+   
    Dismiss
 
 Now decide what should be deleted first. The setup here uses the rank of the dataset and if they are the same it starts with the small datasets first. The rank is a number which is calculated to indicate how popular the dataset is. The CMS definition is approximately [#]_ the number of days the dataset was not used (we call that the idle days). So, the higher the rank the less popular the sample is.
 ::
+   
    Order decreasing dataset.usage_rank increasing replica.size
  
 Managing Quotas
