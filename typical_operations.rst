@@ -27,11 +27,11 @@ A basic policy always starts with setting up a Partition.
    Partition MyCache
 
 Define a number of storage sites this partition has access to.
-
+::
  On site.name in [ T2_US_MIT T3_US_MIT ]
 
 Set the high and low watermakr to define the deletions.
-
+::
  When site occupancy > 0.9
  Until site.occupancy < 0.85
 
