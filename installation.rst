@@ -72,8 +72,8 @@ There are a few steps to follow before running the installation script:
 
    Edit the following items:
    
-   - Passwords for MySQL users (three lines; must be identical to what is in grants.json)
-   - X509 certificate to be used by the server user when accessing various external HTTPS REST resources (in `utils.interface.webservice:HTTPSCertKeyHandler` block).
+   - Passwords for MySQL users (three lines; must be identical to what is set in the next bullet: grants.json)
+   - X509 certificate to be used by the server user when accessing various external HTTPS REST resources (in the `utils.interface.webservice:HTTPSCertKeyHandler` block).
 
    
 #. Copy grants template for mysql to default location and edit the contents.
