@@ -76,7 +76,6 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -90,7 +89,7 @@ html_theme = 'classic'
 # documentation.
 #
 html_theme_options = {
-    "rightsidebar": "true"
+    'rightsidebar': True
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
