@@ -81,7 +81,15 @@ There are a few steps to follow before running the installation script:
 
    Else the default configuration should work for most cases.
    
-#. Copy `dynamo/defaults.json.template` to `dynamo/defaults.json` and edit
+
+#. Copy default json configuration template to its default location and edit the contents.
+   ::
+
+      cd dynamo
+      cp defaults.json.template defaults.json
+
+   Edit the following items:
+   
    - Passwords for MySQL users (three lines; must be identical to what is in grants.json)
    - X509 certificate to be used by the server user when accessing various external HTTPS REST resources (in `utils.interface.webservice:HTTPSCertKeyHandler` block).
 
