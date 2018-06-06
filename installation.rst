@@ -64,7 +64,14 @@ There are a few steps to follow before running the installation script:
 
    and see whether the certificate is valid under the 'Validity' printout.
    
-#. Copy `dynamo/mysql/grants.json.template` to `dynamo/mysql/grants.json` and enter the user passwords. This file specifies what user accounts and permissiong grants should be created on the MySQL server. By default, four users are created with different usage classes:
+   #. Copy grants template for mysql to default location and edit the contents. Default configuration should work for most cases.
+
+
+Copy `dynamo/mysql/grants.json.template` to `dynamo/mysql/grants.json` and enter the user passwords. This file specifies what user accounts and permissiong grants should be created on the MySQL server. By default, four users are created with different usage classes:
+   ::
+
+      cd dynamo
+      cp mysql/grants.json.template mysql/grants.json
 
    - `dynamosrv` is the MySQL user with full access to all relevant databases. This is the user used by the main Dynamo server. The password for `dynamosrv` should not be readable by normal users.
    - `dynamo` is the MySQL user with full access for all practical purposes running the Dynamo applications.
