@@ -9,19 +9,35 @@ The task of adding new data to the system (injection) and invalidating data that
 Policy Building Blocks
 ......................
 
-Policies are statements based on operators, regular expression matching and basic building blocks. Building blocks are:
- 1. sites
- 2. replica
- 3. blockreplica
- 4. dataset
+Policies are statements based on operators, regular expression matching and the basic Dynamo building blocks. Building blocks are:
+ 1. Partition
+ 2. sites
+ 3. replica
+ 4. blockreplica
+ 5. dataset
 
-Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_
+Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
 
 
 Setting Up a Basic Policy
 .........................
 
+A basic policy always starts with setting up a Partition.
 
+ Partition MyCache
+
+Define a number of storage sites this partition has access to.
+
+ On site.name in [ T2_US_MIT T3_US_MIT ]
+
+Set the high and low watermakr to define the deletions.
+
+ When site occupancy > 0.9
+ Until site.occupancy < 0.85
+
+
+ 
+ 
 Managing Quotas
 ...............
 
