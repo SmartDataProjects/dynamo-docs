@@ -33,18 +33,21 @@ A basic policy always starts with setting up a Partition.
    Partition MyCache
 
 Define a number of storage sites this partition has access to.
-::
+
+.. code-block:: c
    
    On site.name in [ T2_US_XYZ T3_US_XYZ ]
 
 Set the high and low water mark to define the deletions.
-::
+
+.. code-block:: c
    
    When site.occupancy > 0.9
    Until site.occupancy < 0.85
 
 Set the default decision for potential deletion which is 'yes' dimiss.
-::
+
+.. code-block:: c
    
    Dismiss
 
