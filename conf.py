@@ -89,8 +89,8 @@ html_theme = 'nature'
 # documentation.
 #
 html_theme_options = {
-    "rightsidebar": "true",
-    "relbarbgcolor": "black"
+    "rightsidebar": "true"
+    #,"relbarbgcolor": "black"
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
