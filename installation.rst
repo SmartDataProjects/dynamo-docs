@@ -26,35 +26,41 @@ Prerequisites
 Basic Installation
 ..................
 
-The core software and most of the functionalities are contained in the `dynamo <https://github.com/SmartDataProjects/dynamo>`_ package. To install, clone the package, configure, and run the installation script login as root:
+The core software and most of the functionalities are contained in the `dynamo <https://github.com/SmartDataProjects/dynamo>`_ package. To start login as root and make a temporary directory:
 ::
-   su -
    
+   su -
+   mkdir tmp   
+
+To install, clone the package, configure, and run the installation script:
 ::
 
-  git clone https://github.com/SmartDataProjects/dynamo
-  cd dynamo
-  # Do the configuration (described below)
-  ./install.sh
+   git clone https://github.com/SmartDataProjects/dynamo
+   cd dynamo
+   
+   # Do the configuration (described below)
+   
+   ./install.sh
 
-Installation target directories are configurable. With default settings, files are copied to
-
-- `/usr/local/dynamo`: For python libraries, daemon executables, standard applications, web templates, and a init script
-- `/etc/dynamo`: For configuration files
-- `/var/log/dynamo`: For server logs
-- `/var/spool/dynamo`: For scheduler work area
-- `/local/data/dynamo`: For data archival
-
-The server and all applications will be run under a normal UNIX user, which can be specified in the configuration file but must be created beforehand.
-
-Once the libraries are installed, start the service `dynamod` as the super-user.
 
 Configuration
 .............
 
+Once the libraries are installed, start the service `dynamod` as the super-user.
+
 There are a few steps to follow before running the installation script:
 
 #. Copy `dynamo/dynamo.cfg.template` to `dynamo/dynamo.cfg` and edit the contents. Default configuration should work for most cases
+   Installation target directories are configurable. With default settings, files are copied to
+
+   - `/usr/local/dynamo`: For python libraries, daemon executables, standard applications, web templates, and a init script
+   - `/etc/dynamo`: For configuration files
+   - `/var/log/dynamo`: For server logs
+   - `/var/spool/dynamo`: For scheduler work area
+   - `/local/data/dynamo`: For data archival
+
+   The server and all applications will be run under a normal UNIX user, which can be specified in the configuration file but must be created beforehand.
+
 #. Create (if it does not already exist) the UNIX user the server runs under, specified in the `user` line of the `server` section of `dynamo.cfg`.
 #. Copy `dynamo/mysql/grants.json.template` to `dynamo/mysql/grants.json` and enter the user passwords. This file specifies what user accounts and permissiong grants should be created on the MySQL server. By default, four users are created with different usage classes:
 
