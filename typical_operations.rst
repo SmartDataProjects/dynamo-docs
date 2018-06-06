@@ -28,7 +28,7 @@ For the following example we have a Tier-3 center with limited disk space and a 
 
 A basic policy always starts with setting up a Partition.
 
-..code-block:: c
+.. code-block:: c
 
    Partition MyCache
 
