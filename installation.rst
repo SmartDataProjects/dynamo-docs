@@ -7,7 +7,7 @@ Prerequisites
 .............
 
 * A Linux machine with sufficient RAM (~20 GB used for CMS installation with 6 million objects)
-  - The softsoftware itself does not depend on the distribution, but the server daemon scripts are only written for RHEL 6 and 7.
+  * The softsoftware itself does not depend on the distribution, but the server daemon scripts are only written for RHEL 6 and 7.
 * Super-user access to the installation machine
 * Python 2.6 or 2.7
 * MySQL server with root access
@@ -15,13 +15,13 @@ Prerequisites
 * Host X509 certificate
 * User X509 certificates
 * Some non-default Python modules
-  - `ssl` (required)
-  - `sqlite3` (required)
-  - `flup` (required for REST API)
-  - `fts3` (required for file operations using `FTS3 <https://fts.web.cern.ch/>`_)
-  - `gfal2` (required for file operations using `GFAL2 <https://dmc.web.cern.ch/projects/gfal-2/home>`_)
-  - `lzma` (required for Detox)
-  - `rrdtool` (required for Dealer monitoring)
+  * `ssl` (required)
+  * `sqlite3` (required)
+  * `flup` (required for REST API)
+  * `fts3` (required for file operations using `FTS3 <https://fts.web.cern.ch/>`_)
+  * `gfal2` (required for file operations using `GFAL2 <https://dmc.web.cern.ch/projects/gfal-2/home>`_)
+  * `lzma` (required for Detox)
+  * `rrdtool` (required for Dealer monitoring)
 
 Basic Installation
 ..................
