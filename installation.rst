@@ -48,8 +48,12 @@ Configuration
 
 There are a few steps to follow before running the installation script:
 
-#. Copy `dynamo/dynamo.cfg.template` to `dynamo/dynamo.cfg` and edit the contents. Default configuration should work for most cases.
+#. Copy configuration template to default location and edit the contents. Default configuration should work for most cases.
+::
 
+   cd dynamo
+   cp dynamo.cfg.template dynamo.cfg 
+   
    Installation target directories are configurable. With default settings, files are copied to
 
    - `/usr/local/dynamo`: For python libraries, daemon executables, standard applications, web templates, and a init script
