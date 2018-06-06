@@ -74,6 +74,15 @@ Decreasing the quota can put sites in a situation where they are not able to cle
 Injecting New Data
 ..................
 
+Data injection happens ususally when the Monte Carlo production system or the Detector data processing system produce new data samples that should be made avaiable to the users. Once files become available they are injected into Dynamo by using the standard REST API that we also use to populate the database during the installation. There are various options. It can be done file by file.
+
+.. code-block:: c
+  
+   *setting the quota -- Yutaro here please*
+
+or in larger chunks using the power of json formatted strings. The injecting system is responsible to define the metadata. Please check out the detailed interface `here please fix <https://github.com/SmartDataProjects/dynamo>`_.
+
+
 
 Invalidating Data
 .................
