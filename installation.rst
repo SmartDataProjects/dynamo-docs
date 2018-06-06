@@ -103,10 +103,9 @@ All users must be authorized before interacting with the Dynamo server. To add a
 ::
   
   source /usr/local/dynamo/etc/profile.d/init.sh
-  dynamo-user-auth --user <user name> --dn "<user certificate DN>"
+  dynamo-user-auth --user <user name> --dn "<user certificate DN>" --role user
 
-Further application-specific authorization can be added using the same script. See the `--help` option for more details.
-
+The option `--role user` creates a new role named `user`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
 
 
 Validate Full Setup
