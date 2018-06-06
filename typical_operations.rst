@@ -52,12 +52,23 @@ Set the default decision for potential deletion which is 'yes' dimiss.
    Dismiss
 
 Now decide what should be deleted first. The setup here uses the rank of the dataset and if they are the same it starts with the small datasets first. The rank is a number which is calculated to indicate how popular the dataset is. The CMS definition is approximately [#]_ the number of days the dataset was not used (we call that the idle days). So, the higher the rank the less popular the sample is.
-::
-   
+
+.. code-block:: c
+  
    Order decreasing dataset.usage_rank increasing replica.size
  
 Managing Quotas
 ...............
+
+Quotas per site are recorded in a database. A REST API gives access to the quotas set for each partition. Quotas can be changed at any time but depending on what the available storage is and what data is presently on the storage site problems can occur.
+
+Usually increasing the quota is less of an issue, though empty space does attract transfers. Sometimes it is best to slowly increase the quota to limit the number of transfers, though there is an internal limit how much data is subscribed per cycle to a specific site and there is a limit on the pending transfer volume to a site. In general increasing the quota is straight forward.
+
+Decreasing the quota can put sites in a situation where they are not able to cleanout enough data in a single cycle to meet the requested quota. This is not a problem if the site still has enough disk space but it will cause a warning until the balancer has loaded off the essential data to other sites.
+
+.. code-block:: c
+  
+   *setting the quota -- Yutaro here please*
 
 
 Injecting New Data
