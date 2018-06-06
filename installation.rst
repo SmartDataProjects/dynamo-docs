@@ -7,7 +7,7 @@ Prerequisites
 .............
 
 - A Linux machine with sufficient RAM (~20 GB used for CMS installation with 6 million objects)
-  - The software itself does not depend on the distribution, but the server daemon scripts are only written for RHEL 6 and 7.
+  - The softsoftware itself does not depend on the distribution, but the server daemon scripts are only written for RHEL 6 and 7.
 - Super-user access to the installation machine
 - Python 2.6 or 2.7
 - MySQL server with root access
