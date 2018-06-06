@@ -63,6 +63,18 @@ There are a few steps to follow before running the installation script:
       openssl x509 -in <certificate> -noout -text
 
    and see whether the certificate is valid under the 'Validity' printout.
+
+#. Copy default json configuration template to its default location and edit the contents.
+   ::
+
+      cd dynamo
+      cp defaults.json.template defaults.json
+
+   Edit the following items:
+   
+   - Passwords for MySQL users (three lines; must be identical to what is in grants.json)
+   - X509 certificate to be used by the server user when accessing various external HTTPS REST resources (in `utils.interface.webservice:HTTPSCertKeyHandler` block).
+
    
 #. Copy grants template for mysql to default location and edit the contents.
    ::
@@ -80,18 +92,6 @@ There are a few steps to follow before running the installation script:
    The MySQL users will be created on the fly during the installation if they do not exist already.
 
    Else the default configuration should work for most cases.
-   
-
-#. Copy default json configuration template to its default location and edit the contents.
-   ::
-
-      cd dynamo
-      cp defaults.json.template defaults.json
-
-   Edit the following items:
-   
-   - Passwords for MySQL users (three lines; must be identical to what is in grants.json)
-   - X509 certificate to be used by the server user when accessing various external HTTPS REST resources (in `utils.interface.webservice:HTTPSCertKeyHandler` block).
 
 
 Initial Data Import
