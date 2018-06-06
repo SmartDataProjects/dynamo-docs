@@ -23,8 +23,7 @@ Setting Up a Basic Policy
 .........................
 
 A basic policy always starts with setting up a Partition.
-
-.. code-block::
+::
    Partition MyCache
 
 Define a number of storage sites this partition has access to.
