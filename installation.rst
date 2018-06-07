@@ -153,8 +153,9 @@ Assuming you have already a large amount of data that you would like Dynamo to m
         {"name": "pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD",
          "is_open": true,
          "last_update": 1528406008,
-         "software_version": ["pandaf", "010"],
+         "software_version": ["pandaf/010"],
          "status": "production",
+	 "data_type": "unknown",
          "blocks":
           [
             {"name": "48dbe0c6-36fa-11e8-a5e2-ac1f6b05e848",
@@ -190,6 +191,8 @@ Verify it was correctly uploaded:
    dynamo
    >>> inventory.datasets
    {'pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD': Dataset('pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD','production','unknown',('pandaf', '010'),1528406008,True,1)}
+   >>> inventory.datasets['pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD']
+   Dataset('pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD','production','unknown',('pandaf', '010'),1528406008,True,1)
 
 
 Validate Full Setup
