@@ -1,13 +1,10 @@
 .. Dynamo documentation master file, created by CP on Tue June 5 10:40:30 2018.
 
-Dynamo - Dynamic Data Management System
-=======================================
-
 .. include:: README.rst
 
 
-History Preface
----------------
+History
+-------
 
 The development of Dynamo started in 2014 by the CMS Computing Operations organization and was initially foreseen to be a tool working on top of the existing CMS data transfer engine PhEDEx. During the last year Dynamo evolved its capabilities to take over the organization of the data transfers and provide a complete package to manage data using, DBS as the source for the initial definition of the metadata, FTS to perform the specific data transfers and the CMS popularity service to track the usage of the data.
 

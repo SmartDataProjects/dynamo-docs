@@ -7,4 +7,4 @@ Once the data is entered into the system Dynamo policies can be set to let the s
 
 The system has been originally designed for the CMS experiment at CERN. There were seven storage sites with tape system access (Tier-1 sites) and about 40 sites with disk only storage (Tier-2).
 
-For people interested to manage their data with Dynamo or contributing to the development of Dynamo please contact the the Dynamo Team at ddm-dynamo@mit.edu.
+For people interested to manage their data with Dynamo or contributing to the development of Dynamo please contact the the Dynamo Team at ddm-dynamo@mit.edu. The documentation is maintained in github and compiled using Sphinx and is uploaded to readthedocs `here <https://ddm-dynamo.readthedocs.io/en/latest/>`_.
