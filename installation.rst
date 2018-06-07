@@ -117,6 +117,8 @@ The option `--role admin` creates a new role named `admin`. Roles are user attri
 Add Storage Sites
 .................
 
+**Once the server is running and users have been added we are now only working as the owner of the above given certificate.**
+
 We create a json file which specifies the storage sites. Here is a typical example of such a json file called mydynamo-storage-sites.json:
 ::
   
