@@ -111,6 +111,23 @@ All users must be authorized before interacting with the Dynamo server. To add a
 The option `--role admin` creates a new role named `admin`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
 
 
+Add a Storage Site
+..................
+
+We create a json file which specifies the site and is then uploaded to the inventory server. HEre is a typical example of such a json file
+::
+  
+    {"site":
+     [
+      {"name": "T2_US_MIT", "host": "se01.cmsaf.mit.edu", "backend": "gsiftp://se01.cmsaf.mit.edu:2811/cms", "status": "ready"},
+      {"name": "T3_US_MIT", "host": "t3serv006.mit.edu", "backend": "srm://t3serv006.mit.edu:8443/srm/v2/server?SFN=/mnt/hadoop/cms", "status": "ready"}
+     ]
+    }
+
+
+The option `--role admin` creates a new role named `admin`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
+
+
 Initial Data Injection
 ......................
 
