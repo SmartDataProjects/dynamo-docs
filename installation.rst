@@ -98,17 +98,24 @@ There are a few steps to follow before running the installation script:
    Else the default configuration should work for most cases.
 
 
-Initial Data Import
-...................
+Add a User
+..........
 
 All users must be authorized before interacting with the Dynamo server. To add a user, use `dynamo-user-auth` as super-user:
 
 ::
   
   source /usr/local/dynamo/etc/profile.d/init.sh
-  dynamo-user-auth --user <user name> --dn "<user certificate DN>" --role user
+  dynamo-user-auth --user <user name> --dn "<user certificate DN>" --role admin
 
-The option `--role user` creates a new role named `user`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
+The option `--role admin` creates a new role named `admin`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
+
+
+Initial Data Injection
+......................
+
+Assuming you have already a large amount of data that you would like Dynamo to manage, here is a way of injecting this data.
+
 
 
 Validate Full Setup
