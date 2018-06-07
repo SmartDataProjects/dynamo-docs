@@ -13,11 +13,12 @@ Prerequisites
 * Super-user access to the installation machine
 * Python 2.6 or 2.7
 * MySQL server with root access
+* MySQLdb python module, provided by MySQL-python RPM
 * If REST API is enabled (recommended), an HTTP(S) server with FastCGI capabilities (`Lighttpd <https://www.lighttpd.net/>`_ is recommended)
 * Host X509 certificate
 * User X509 certificates
-* Some non-default Python modules
-  
+* Some non-default Python modules (available in e.g. `EPEL <https://fedoraproject.org/wiki/EPEL>`_ repository)
+
   * `ssl` (required)
   * `sqlite3` (required)
   * `flup` (required for REST API)
@@ -105,10 +106,9 @@ All users must be authorized before interacting with the Dynamo server. To add a
 ::
   
   source /usr/local/dynamo/etc/profile.d/init.sh
-  dynamo-user-auth --user <user name> --dn "<user certificate DN>"
+  dynamo-user-auth --user <user name> --dn "<user certificate DN>" --role user
 
-Further application-specific authorization can be added using the same script. See the `--help` option for more details.
-
+The option `--role user` creates a new role named `user`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
 
 
 Validate Full Setup
