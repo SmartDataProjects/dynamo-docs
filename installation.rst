@@ -36,12 +36,16 @@ The core software and most of the functionalities are contained in the `dynamo <
    su -
    mkdir tmp   
 
-To install, clone the package, configure, and run the installation script:
+First clone the package:
 ::
 
    git clone https://github.com/SmartDataProjects/dynamo
    
-   # Before doing the install please go through configuration (described right below)
+Configure the package as described in the next section. Please do this before moving on to installation!
+::
+
+Finally, after you have done the configuration run the installation script:
+::
    
    ./dynamo/install.sh
 
