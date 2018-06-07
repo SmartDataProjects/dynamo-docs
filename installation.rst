@@ -182,7 +182,15 @@ Assuming you have already a large amount of data that you would like Dynamo to m
         }
       ]
     }
-    
+  
+
+Verify it was correctly uploaded:
+::
+
+   dynamo
+   >>> inventory.datasets
+   {'pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD': Dataset('pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD','production','unknown',('pandaf', '010'),1528406008,True,1)}
+
 
 Validate Full Setup
 ...................
