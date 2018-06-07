@@ -18,7 +18,7 @@ As the package evolved from the CMS environment it was initially coupled to the 
     components
     external_packages
     installation
-    adding _content
+    adding_content
     typical_operations
     
 
