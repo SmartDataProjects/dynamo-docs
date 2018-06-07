@@ -42,7 +42,6 @@ First clone the package:
    git clone https://github.com/SmartDataProjects/dynamo
    
 Configure the package as described in the next section. Please do this before moving on to installation!
-::
 
 Finally, after you have done the configuration run the installation script:
 ::
