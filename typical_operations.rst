@@ -21,7 +21,9 @@ Their detailed description is given in `here <https://github.com/SmartDataProjec
 Adding a Storage Site to the System
 ...................................
 
+In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site but in principle others exists. In Dynamo sites are maintained in a configuration site in json format where they can be added during configuration time before the service is started.
 
+It is straight forward to write a tool to extract this information from an external database as to keep this information up to date.
 
 
 Setting Up a Basic Policy
@@ -88,7 +90,6 @@ Data injection happens usually when the Monte Carlo production system or the Det
 or in larger chunks using the power of json formatted strings. The injecting system is responsible to define the metadata. Please check out the detailed interface `here please fix <https://github.com/SmartDataProjects/dynamo>`_.
 
 
-
 Invalidating Data
 .................
 
@@ -121,4 +122,6 @@ Dynamo provides an easy to use interface with fully exposed metadata to tests po
    *run deletion campaign interface  -- Benedikt here please*
 
 .. rubric:: Footnotes
+.. [#] ON the longer run siteDB will be replaced by CRIC.
 .. [#] There are some corrections to the simple number of idle days to make sure that data that has just been copied it not deleted immediately and some adjustments for the size of the sample.
+       
