@@ -3,10 +3,7 @@
 Dynamo - Dynamic Data Management System
 =======================================
 
-.. this is just hear to make sure sphinx does not warn about this file not being used
-.. toctree::
-
-    README
+.. include:: README.rst
 
 
 History Preface
