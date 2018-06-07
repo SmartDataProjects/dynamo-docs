@@ -3,10 +3,15 @@
 Dynamo - Dynamic Data Management System
 =======================================
 
+.. this is just hear to make sure sphinx does not warn about this file not being used
 .. toctree::
     :hidden:
 
     README
+
+
+History Preface
+---------------
 
 The development of Dynamo started in 2014 by the CMS Computing Operations organization and was initially foreseen to be a tool working on top of the existing CMS data transfer engine PhEDEx. During the last year Dynamo evolved its capabilities to take over the organization of the data transfers and provide a complete package to manage data using, DBS as the source for the initial definition of the metadata, FTS to perform the specific data transfers and the CMS popularity service to track the usage of the data.
 
