@@ -4,11 +4,19 @@ Components
 Data Organization
 .................
 
-Dynamo's atomic data unit is a file, which is uniquely identified with its Logical File Name (LFN). The logical file name 
+The main data entity used in organization and communication is the dataset. A dataset is a number of files which share common metadata. For example, a Monte Carlo simulation sample of Higgs decays to two photons generated with a specific set of configurations has a number of files which end up in one dataset. If the user is interested in accessing one of the files the user is very likely also interested in accessing the rest of the files in the given dataset. It thus makes sense to join them together and perform data operations together on them.
+
+As it turns out some of those data samples can get very large which can be problematic when managing them. Therefore an intermediate level of organization is introduced. A set of files are organized into a block and datasets contain a number of blocks.
+
+Dynamo's atomic data unit is a file, which is uniquely identified with its Logical File Name (LFN). The logical file name will have to be translated to a Physical File Name (PFN) when trying to find the physical file name location. Therefore each site defines its own namespace which is part of the site specic configuration.
 
 
 Authorization
 .............
+
+In Dynamo data at any given storage site are owned by one user which is identified by a x509 service certificate. As dynamo runs centrally all authentication is organized at the central server level. For officially produced data a very limited number of users need to have access and they are maintained in a database. It is the operations team that needs to have access. There are a few different levels of access available which is designed to protect the operators from making mistakes.
+
+As the data on the storage sites is owned by a central user the permissions essentially manage the permissions to modify the inventory. The authorization scheme is very basic but there is a clear path how to expand it if so desired.
 
 Processes and Organization
 ..........................
