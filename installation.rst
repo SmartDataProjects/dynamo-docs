@@ -14,7 +14,7 @@ Prerequisites
 * Python 2.6 or 2.7
 * MySQL server with root access
 * MySQLdb python module, provided by MySQL-python RPM
-* If REST API is enabled (recommended), an HTTP(S) server with FastCGI capabilities (`Lighttpd <https://www.lighttpd.net/>`_ is recommended)
+* The REST API requires an HTTP(S) server with FastCGI capabilities (`Lighttpd <https://www.lighttpd.net/>`_ is recommended)
 * Host X509 certificate
 * User X509 certificates
 * Some non-default Python modules (available in e.g. `EPEL <https://fedoraproject.org/wiki/EPEL>`_ repository)
@@ -111,10 +111,10 @@ All users must be authorized before interacting with the Dynamo server. To add a
 The option `--role admin` creates a new role named `admin`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
 
 
-Add a Storage Site
-..................
+Add Storage Sites
+.................
 
-We create a json file which specifies the site and is then uploaded to the inventory server. HEre is a typical example of such a json file
+We create a json file which specifies the storage sites. Here is a typical example of such a json file called mydynamo-storage-sites.json:
 ::
   
     {"site":
@@ -124,15 +124,16 @@ We create a json file which specifies the site and is then uploaded to the inven
      ]
     }
 
+Note that the LFN to PFN translation is very basic by attaching the LFN to the backend at the storage site. Now we upload this json to the inventory server:
+::
 
-The option `--role admin` creates a new role named `admin`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
+   
 
 
 Initial Data Injection
 ......................
 
 Assuming you have already a large amount of data that you would like Dynamo to manage, here is a way of injecting this data.
-
 
 
 Validate Full Setup
