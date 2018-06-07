@@ -18,12 +18,13 @@ Policies are statements based on operators, regular expression matching and the 
 
 Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
 
+
 Adding a Storage Site to the System
 ...................................
 
-In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site but in principle others exists. In Dynamo sites are maintained in a configuration site in json format where they can be added during configuration time before the service is started.
+In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site but in principle others exists. In Dynamo sites are maintained in a separate tabkle in the inventory. Sites can be added at runtime dynamo-inject and a json file. A full description is given in the ??? SECTION.
 
-It is straight forward to write a tool to extract this information from an external database as to keep this information up to date.
+It is straight forward to write a tool to extract this information from an external database as to keep this information up-to-date.
 
 
 Setting Up a Basic Policy
