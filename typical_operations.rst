@@ -150,11 +150,11 @@ Planning Deletion Campaigns
 
 While policies are very powerful, sometimes it is more effective to explicitly remove data from the storage. The process of deletion from disk only is usually already rather tedious, but removing them altogether including tape copies is painful and sometimes scary. The reson for this is that in bigger collaborations it is hard to track who really needs the data and sometimes unforeseen events might make certain data useful again. Planning data deletion is therefore very important and good tools are needed to coral the data that should be removed. In CMS, the physics organization gets involved and it can take weeks to converge on an agreeable list.
 
-Dynamo provides an easy to use interface with fully exposed metadata to tests policies setup to identify data that can be deleted. The idea is to write a policy file, execute it and get in return the list of dataset that would be removed.
-
-.. code-block:: c
+The Detox application has a *test run* option, where test policy files can be evaluated without altering the inventory state or issuing any actual deletions.
+::
   
-   *run deletion campaign interface  -- Benedikt here please*
+  dynamo '/usr/local/dynamo/exec/detox_cms --test-run --config /etc/dynamo/detox_config.json --policy <test policy file>' --write-request --title detox
+
 
 .. rubric:: Footnotes
 .. [#] ON the longer run siteDB will be replaced by CRIC.
