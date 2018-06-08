@@ -63,9 +63,9 @@ Set the deletion start and stop triggers (high and low water marks in this case)
    When site.occupancy > 0.9
    Until site.occupancy < 0.85
 
-Note that the above three line refer to *site attributes* (`site_variables` in the `variables.py <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_), whereas the rest of the policy file is written in terms of *replica attributes* (`replica_variables`).
+Note that the above three lines refer to *site attributes* (`site_variables` in the `variables.py <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_), whereas the rest of the policy file is written in terms of *replica attributes* (`replica_variables`).
 
-The lines succeeding the trigger defintions are called the *policy stack* and is in general the main part of the policy file. Each line starts with either `Protect`, `Delete`, or `Dismiss` (action keywords) [#]_. followed by a condition that is evaluated against dataset replicas. Each dataset replica in the partition is pushed through the policy stack from the top. The action of the first line with a matching condition is applied to the replica. (It is therefore important to note that the ordering in the policy stack matters.) If the action is `Protect`, the replica is not deleted. With `Delete`, it is unconditionally deleted. Replicas matching a `Dismiss` line will be candidates for deletion, but are only deleted when the site satisfies the deletion trigger defined above.
+The lines succeeding the trigger defintions are called the *policy stack* and is in general the main part of the policy file. Each line starts with either `Protect`, `Delete`, or `Dismiss` (action keywords) [#]_, followed by a condition that is evaluated against dataset replicas. Each dataset replica in the partition is pushed through the policy stack from the top. The action of the first line with a matching condition is applied to the replica. (It is therefore important order the policy lines carefully.) If the action is `Protect`, the replica is not deleted. With `Delete`, it is unconditionally deleted. Replicas matching a `Dismiss` line will be candidates for deletion, but are only deleted when deletion is triggered at the site.
 
 In this example, we will define a one-line policy stack to protect replicas that have just been transfered (inferred by the creation date of the last block replica):
 
@@ -142,7 +142,7 @@ The tool for data invalidation is also `dynamo-inject`, but with a `--delete` op
 and then execute (as a user with `admin` role)
 ::
 
-dynamo-delete <json file>
+  dynamo-delete <json file>
 
 
 Planning Deletion Campaigns
