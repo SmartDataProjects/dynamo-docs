@@ -90,7 +90,7 @@ Once the policy file is written, you can execute the application Detox to actual
 
   dynamo '/usr/local/dynamo/exec/detox --config /etc/dynamo/detox_config.json --policy /full/path/to/MyCache.txt' --write-request --title detox
 
-Note that `detox` must be authorized as a read/write executable beforehand (see `Application Authorization`_).
+Note that `detox` must be authorized as a read/write executable beforehand (see :ref:`applicationauthorization-ref`).
 
  
 Managing Quotas

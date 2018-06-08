@@ -86,6 +86,8 @@ Verify it was correctly uploaded:
    set([Block('48dbe0c6-36fa-11e8-a5e2-ac1f6b05e848','pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD',165438,2,True,1528406008,1,False)])
 
 
+.. _applicationauthorization-ref:
+
 Application Authorization
 .........................
 
