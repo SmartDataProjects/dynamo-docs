@@ -120,7 +120,7 @@ Invalidating Data
 
 Data invalidation (deletion of metadata in Dynamo inventory) means data that was once valid will be turned into invalid data. While this seems obvious it is important to ponder on this for a moment. Invalidated data become orphan files and can be deleted at any time by the Site Consistency tool. Therefore, **the action of invalidation cannot be reverted**, and it is essential to think very carefully before invalidating data. Usually, data is invalidated when a major mistake was found in the production process and thus the data are useless, or when files are completely lost, which means that there are no proper copy in the system anymore. The former happens more frequently than the latter, but with many million of files, data loss does happen eventually.
 
-The tool for data invalidation is also `dynamo-inject`, but with a `--delete` option. The format for the JSON file for invalidation is similar to the one in the `Initial Data Injection`_ section. The only difference is that the items only need their names. As an example, to invalidate a file `/store/user/me/lost_file.root` which belongs to the block `abcd` of the dataset `/A/B/C`, write a JSON file with content
+The tool for data invalidation is also `dynamo-inject`, but with a `--delete` option. The format for the JSON file for invalidation is similar to the one in the :ref:`initialinjection-ref` section. The only difference is that the items only need their names. As an example, to invalidate a file `/store/user/me/lost_file.root` which belongs to the block `abcd` of the dataset `/A/B/C`, write a JSON file with content
 ::
 
   {"dataset":

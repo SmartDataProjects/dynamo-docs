@@ -4,7 +4,7 @@ Adding Content
 After the installation of your Dynamo data management system, it is of course empty. In the the following we show how to fill content into your data management system. We need to add Storage Sites, and Data and then we need to setup the access.
 
 **Once the server is running and user(s) have been added (last section) we are now only working as the owner of the above given certificate(s).**
-
+s
 .. _addstorage-ref:
 
 Add Storage Sites
@@ -32,6 +32,7 @@ Verify it was correctly uploaded:
    >>> inventory.sites
    {'T3_US_XYZ': Site('T3_US_XYZ','t3-storage.xyz.edu','disk','srm://t3-storage.xyz.edu:8443/srm/v2/server?SFN=/mnt/hadoop/cms','ready',2), 'T2_US_XYZ': Site('T2_US_XYZ','t2-storage.xyz.edu','disk','gsiftp://t2-storage.xyz.edu:2811/cms','ready',1)}
 
+.. _initialinjection-ref:
 
 Initial Data Injection
 ......................
