@@ -22,7 +22,7 @@ Their detailed description is given `here <https://github.com/SmartDataProjects/
 Adding a Storage Site to the System
 ...................................
 
-In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site, but in principle others exist. In Dynamo, sites are represented as objects in the inventory. Sites can be added at runtime using tools like `dynamo-inject`. An example is given in the :ref:`Add Storage Sites`_ section.
+In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site, but in principle others exist. In Dynamo, sites are represented as objects in the inventory. Sites can be added at runtime using tools like `dynamo-inject`. An example is given in the `Add Storage Sites`_ section.
 
 It is straightforward to write a tool to extract this information from an external database as to keep this information up-to-date.
 
@@ -90,7 +90,7 @@ Once the policy file is written, you can execute the application Detox to actual
 
   dynamo '/usr/local/dynamo/exec/detox --config /etc/dynamo/detox_config.json --policy /full/path/to/MyCache.txt' --write-request --title detox
 
-Note that `detox` must be authorized as a read/write executable beforehand (see :ref:`Application Authorization`_).
+Note that `detox` must be authorized as a read/write executable beforehand (see `Application Authorization`_).
 
  
 Managing Quotas
@@ -120,7 +120,7 @@ Invalidating Data
 
 Data invalidation (deletion of metadata in Dynamo inventory) means data that was once valid will be turned into invalid data. While this seems obvious it is important to ponder on this for a moment. Invalidated data become orphan files and can be deleted at any time by the Site Consistency tool. Therefore, **the action of invalidation cannot be reverted**, and it is essential to think very carefully before invalidating data. Usually, data is invalidated when a major mistake was found in the production process and thus the data are useless, or when files are completely lost, which means that there are no proper copy in the system anymore. The former happens more frequently than the latter, but with many million of files, data loss does happen eventually.
 
-The tool for data invalidation is also `dynamo-inject`, but with a `--delete` option. The format for the JSON file for invalidation is similar to the one in the :ref:`Initial Data Injection`_ section. The only difference is that the items only need their names. As an example, to invalidate a file `/store/user/me/lost_file.root` which belongs to the block `abcd` of the dataset `/A/B/C`, write a JSON file with content
+The tool for data invalidation is also `dynamo-inject`, but with a `--delete` option. The format for the JSON file for invalidation is similar to the one in the `Initial Data Injection`_ section. The only difference is that the items only need their names. As an example, to invalidate a file `/store/user/me/lost_file.root` which belongs to the block `abcd` of the dataset `/A/B/C`, write a JSON file with content
 ::
 
   {"dataset":
