@@ -81,3 +81,26 @@ Verify it was correctly uploaded:
    {'pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD': Dataset('pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD','production','unknown','pandaf/010',1528406008,True,1)}
    >>> inventory.datasets['pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD'].blocks
    set([Block('48dbe0c6-36fa-11e8-a5e2-ac1f6b05e848','pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD',165438,2,True,1528406008,1,False)])
+
+
+Application Authorization
+.........................
+
+Any python script can be run as a Dynamo application by
+::
+
+  dynamo '<script> [<options>]'
+
+The script will be run as a subprocess of the server, inheriting the memory image of the inventory from the parent process. A script executed this way becomes a *readonly* process, where any changes made to the inventory during the execution will be discarded at the end. To execute a script as a *read/write* process, it first needs to be authorized by the super-user.
+::
+
+  su -
+  source /usr/local/dynamo/etc/profile.d/init.sh
+  dynamo-exec-auth --executable <script> --title <title> [--user <user>]
+
+`<title>` can be any string. With the `--user` option, only the specified user will be allowed to execute the script with read/write permission. To execute a read/write application, as an authorized user do
+::
+
+  dynamo '<script> [<options>]' --write-request --title <title>
+
+The authorization step must be performed every time there is a change to the `<script>`.

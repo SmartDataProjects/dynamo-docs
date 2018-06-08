@@ -22,7 +22,7 @@ Their detailed description is given `here <https://github.com/SmartDataProjects/
 Adding a Storage Site to the System
 ...................................
 
-In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site, but in principle others exist. In Dynamo, sites are represented as objects in the inventory. Sites can be added at runtime using tools like `dynamo-inject`. An example is given in the :ref:`Add Storage Sites` section.
+In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site, but in principle others exist. In Dynamo, sites are represented as objects in the inventory. Sites can be added at runtime using tools like `dynamo-inject`. An example is given in the :ref:`Add Storage Sites`_ section.
 
 It is straightforward to write a tool to extract this information from an external database as to keep this information up-to-date.
 
@@ -44,7 +44,7 @@ which says everything (because * matches all dataset names) is included in the d
 
    MyCache:  site.name in [ T2_US_XYZ T3_US_XYZ ]
 
-We then proceed to building the Detox policy. Start a new file with declaring the Partition.
+We then proceed to building the Detox policy. Open a new file `MyCache.txt`. The first line of the file is the partition declaration:
 
 .. code-block:: c
 
@@ -65,7 +65,15 @@ Set the deletion start and stop triggers (high and low water marks in this case)
 
 Note that the above three line refer to *site attributes* (`site_variables` in the `variables.py <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_), whereas the rest of the policy file is written in terms of *replica attributes* (`replica_variables`).
 
-Set the default decision for potential deletion which is 'yes' dimiss.
+The lines succeeding the trigger defintions are called the *policy stack* and is in general the main part of the policy file. Each line starts with either `Protect`, `Delete`, or `Dismiss` (action keywords) [#]_. followed by a condition that is evaluated against dataset replicas. Each dataset replica in the partition is pushed through the policy stack from the top. The action of the first line with a matching condition is applied to the replica. (It is therefore important to note that the ordering in the policy stack matters.) If the action is `Protect`, the replica is not deleted. With `Delete`, it is unconditionally deleted. Replicas matching a `Dismiss` line will be candidates for deletion, but are only deleted when the site satisfies the deletion trigger defined above.
+
+In this example, we will define a one-line policy stack to protect replicas that have just been transfered (inferred by the creation date of the last block replica):
+
+.. code-block:: c
+
+   Protect replica.last_block_created newer_than 1 day ago
+
+The last line of the policy stack sets the default action for all dataset replicas with no matching lines. We want the replicas to be deletable if necessary:
 
 .. code-block:: c
    
@@ -77,59 +85,70 @@ Now decide what should be deleted first. The setup here uses the rank of the dat
   
    Order decreasing dataset.usage_rank increasing replica.size
 
-In general, a *policy stack* is given in between the site trigger lines and the default decision. It is important to note that the ordering in the policy stack matters. Each sample is pushed through the policy stack and the moment a policy applies the sample is not processed further.
+Once the policy file is written, you can execute the application Detox to actually perform the deletions.
+::
+
+  dynamo '/usr/local/dynamo/exec/detox --config /etc/dynamo/detox_config.json --policy /full/path/to/MyCache.txt' --write-request --title detox
+
+Note that `detox` must be authorized as a read/write executable beforehand (see :ref:`Application Authorization`_).
 
  
 Managing Quotas
 ...............
 
-Quotas per site are recorded in a database. A REST API gives access to the quotas set for each partition. Quotas can be changed at any time but depending on what the available storage is and what data is presently on the storage site problems can occur.
+Quotas are defined per site per partition and can be changed at any time. The quota Dynamo uses may be completely disconnected from the reality; it is simply a number Dynamo is told that the site has for a given partition.
 
-Usually increasing the quota is less of an issue, though empty space does attract transfers. Sometimes it is best to slowly increase the quota to limit the number of transfers, though there is an internal limit how much data is subscribed per cycle to a specific site and there is a limit on the pending transfer volume to a site. In general increasing the quota is straight forward.
+Usually increasing the quota is less of an issue, though empty space does attract transfers. Sometimes it is best to slowly increase the quota to limit the number of transfers, though there is an internal limit on how much data is subscribed per cycle to a specific site and there is a limit on the pending transfer volume to a site.
 
-Decreasing the quota can put sites in a situation where they are not able to clean out enough data in a single cycle to meet the requested quota. This is not a problem if the site still has enough disk space but it will cause a warning until the balancer has loaded off the essential data to other sites.
+Decreasing the quota can put sites in a situation where they are not able to clean out enough data in a single Detox cycle to meet the requested quota. This is not a problem if the site still has enough disk space, but it will cause a warning until the balancer has loaded off the essential data to other sites.
 
-.. code-block:: c
+To manage the quota, use the `set_quotas.py` script in the `utilities` directory. Volume is measured in terabytes.
+::
   
-   *setting the quota -- Yutaro here please*
+  dynamo '/usr/local/dynamo/utilities/set_quota.py --site T2_US_XYZ --dump'
+  dynamo '/usr/local/dynamo/utilities/set_quota.py --site T2_US_XYZ --volume 100' --write-request --title set_quota # set_quota must be authorized first
 
 
 Injecting New Data
 ..................
 
-Data injection happens usually when the Monte Carlo production system or the Detector data processing system produce new data samples that should be made available to the users. Once files become available they are injected into Dynamo by using the standard REST API that we also use to populate the database during the installation. There are various options. It can be done file by file.
-
-.. code-block:: c
-  
-   *setting the quota -- Yutaro here please*
-
-or in larger chunks using the power of json formatted strings. The injecting system is responsible to define the metadata. Please check out the detailed interface `here please fix <https://github.com/SmartDataProjects/dynamo>`_.
+Data injection happens usually when the Monte Carlo production system or the Detector data processing system produce new data samples that should be made available to the users. Once files become available they are injected into Dynamo by using `dynamo-inject` that we also use to populate the inventory during the installation. The injecting system is responsible for defining the metadata.
 
 
 Invalidating Data
 .................
 
-Data invalidation means data that was once valid will be turned into invalid data. While this seems obvious it is important to ponder on this for a moment. Data in Dynamo once invalidated can be deleted at any time and thus **the action of invalidation cannot be reverted**. The reason why we write *can* be deleted just refers to the fact that Dynamo might need some time to execute the deletions at all storage sites. The metadata though stays in the system for historical purposes.
+Data invalidation (deletion of metadata in Dynamo inventory) means data that was once valid will be turned into invalid data. While this seems obvious it is important to ponder on this for a moment. Invalidated data become orphan files and can be deleted at any time by the Site Consistency tool. Therefore, **the action of invalidation cannot be reverted**, and it is essential to think very carefully before invalidating data. Usually, data is invalidated when a major mistake was found in the production process and thus the data are useless, or when files are completely lost, which means that there are no proper copy in the system anymore. The former happens more frequently than the latter, but with many million of files, data loss does happen eventually.
 
-Therefore it is essential to think very carefully before invalidating data. Usually data is invalidated when a major mistake was found in the production process and thus the data are useless or files were completely lost which means that there are no proper copy in the system anymore. The former happens more often while the latter happens rarely but with many million of files it does happen eventually. File invalidation will need a number of actions in the system in particular is the data are still available on disk. In general when Dynamo finds invalid data they will be deleted to save storage space.
+The tool for data invalidation is `dynamo-delete`, which takes a JSON file similar to the one in the :ref:`Initial Data Injection`_ section. The only difference is that the items only need their names. As an example, to invalidate a file `/store/user/me/lost_file.root` which belongs to the block `abcd` of the dataset `/A/B/C`, write a JSON file with content
+::
 
-To invalidate single files:
-.. code-block:: c
-  
-   *invalidate a file -- Yutaro here please*
+  {"dataset":
+    [
+      {"name": "/A/B/C",
+       "blocks":
+        [
+          {"name": "abcd",
+           "files":
+            [
+              {"name": "/store/user/me/lost_file.root"}
+            ]
+          }
+        ]
+      }
+    ]
+  }
 
-To invalidate blocks or entire datasets:
-.. code-block:: c
-  
-   *invalidate a block or a dataset  -- Yutaro here please*
+and then execute (as a user with `admin` role)
+::
 
-If so desired removing INVALID or DEPRECATED data can be switched off or tuned to remain for a grace period in the storage.
+dynamo-delete <json file>
 
 
 Planning Deletion Campaigns
 ...........................
 
-While policies are very powerful sometimes it is more effective to explicitly remove data from the storage. The process of deletion from disk only is usually already rather tedious, but removing them altogether including a tape copy is painful and sometimes scary. The reson for this is that in bigger collaborations it is hard to track who really needs the data and sometimes unforeseen events might make certain data useful again. Planning data deletion is therefore very important and good tools are needed to coral the data that should be removed. In CMS the physics organization gets involved and it can take weeks to converge on an agreable list.
+While policies are very powerful, sometimes it is more effective to explicitly remove data from the storage. The process of deletion from disk only is usually already rather tedious, but removing them altogether including tape copies is painful and sometimes scary. The reson for this is that in bigger collaborations it is hard to track who really needs the data and sometimes unforeseen events might make certain data useful again. Planning data deletion is therefore very important and good tools are needed to coral the data that should be removed. In CMS, the physics organization gets involved and it can take weeks to converge on an agreeable list.
 
 Dynamo provides an easy to use interface with fully exposed metadata to tests policies setup to identify data that can be deleted. The idea is to write a policy file, execute it and get in return the list of dataset that would be removed.
 
@@ -139,5 +158,6 @@ Dynamo provides an easy to use interface with fully exposed metadata to tests po
 
 .. rubric:: Footnotes
 .. [#] ON the longer run siteDB will be replaced by CRIC.
+.. [#] Actually there are a few more actions that can be taken. See the `Detox policy <https://github.com/SmartDataProjects/dynamo/blob/master/lib/detox/detoxpolicy.py>`_ module for details.
 .. [#] There are some corrections to the simple number of idle days to make sure that data that has just been copied it not deleted immediately and some adjustments for the size of the sample.
        
