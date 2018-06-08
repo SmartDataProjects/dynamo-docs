@@ -159,5 +159,4 @@ The Detox application has a *test run* option, where test policy files can be ev
 .. rubric:: Footnotes
 .. [#] On the longer run siteDB will be replaced by CRIC.
 .. [#] Actually there are a few more actions that can be taken. See the `Detox policy <https://github.com/SmartDataProjects/dynamo/blob/master/lib/detox/detoxpolicy.py>`_ module for details.
-.. [#] There are some corrections to the simple number of idle days to make sure that data that has just been copied it not deleted immediately and some adjustments for the size of the sample.
-       
+.. [#] There are some corrections to the simple number of idle days, to make sure that data that has just been copied is not deleted immediately and some adjustments for the size of the sample.
