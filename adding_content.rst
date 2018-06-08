@@ -1,11 +1,13 @@
 Adding Content
 --------------
 
+After the installation of your Dynamo data management system, it is of course empty. In the the following we show how to fill content into your data management system. We need to add Storage Sites, and Data and then we need to setup the access.
+
+**Once the server is running and user(s) have been added (last section) we are now only working as the owner of the above given certificate(s).**
+
 
 Add Storage Sites
 .................
-
-**Once the server is running and users have been added we are now only working as the owner of the above given certificate.**
 
 We create a json file which specifies the storage sites. Here is a typical example of such a json file called mydynamo-storage-sites.json:
 ::

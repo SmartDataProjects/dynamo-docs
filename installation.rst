@@ -8,7 +8,7 @@ Prerequisites
 
 * A Linux machine with sufficient RAM (~20 GB used for CMS installation with 6 million objects)
 
-  * The softsoftware itself does not depend on the distribution, but the server daemon scripts are only written for RHEL 6 and 7.
+  * The software itself does not depend on the distribution, but the server daemon scripts are only written for RHEL 6 and 7.
 
 * Super-user access to the installation machine
 * Python 2.6 or 2.7
@@ -79,7 +79,7 @@ There are a few steps to follow before running the installation script:
 
    Edit the following items:
    
-   - Passwords for MySQL users (three lines; must be identical to what is set in the next bullet: grants.json)
+   - Passwords for MySQL users (three lines; you can choose, but must be identical to what is set in the next bullet: grants.json)
    - X509 certificate to be used by the server user when accessing various external HTTPS REST resources (in the `utils.interface.webservice:HTTPSCertKeyHandler` block).
 
    

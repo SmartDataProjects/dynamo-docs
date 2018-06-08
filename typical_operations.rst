@@ -65,9 +65,9 @@ Set the deletion start and stop triggers (high and low water marks in this case)
 
 Note that the above three lines refer to *site attributes* (`site_variables` in the `variables.py <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_), whereas the rest of the policy file is written in terms of *replica attributes* (`replica_variables`).
 
-The lines succeeding the trigger defintions are called the *policy stack* and is in general the main part of the policy file. Each line starts with either `Protect`, `Delete`, or `Dismiss` (action keywords) [#]_, followed by a condition that is evaluated against dataset replicas. Each dataset replica in the partition is pushed through the policy stack from the top. The action of the first line with a matching condition is applied to the replica. (It is therefore important order the policy lines carefully.) If the action is `Protect`, the replica is not deleted. With `Delete`, it is unconditionally deleted. Replicas matching a `Dismiss` line will be candidates for deletion, but are only deleted when deletion is triggered at the site.
+The lines succeeding the trigger definitions are called the *policy stack* and is in general the main part of the policy file. Each line starts with either `Protect`, `Delete`, or `Dismiss` (action keywords) [#]_, followed by a condition that is evaluated against dataset replicas. Each dataset replica in the partition is pushed through the policy stack from the top. The action of the first line with a matching condition is applied to the replica. (It is therefore important order the policy lines carefully.) If the action is `Protect`, the replica is not deleted. With `Delete`, it is unconditionally deleted. Replicas matching a `Dismiss` line will be candidates for deletion, but are only deleted when deletion is triggered at the site.
 
-In this example, we will define a one-line policy stack to protect replicas that have just been transfered (inferred by the creation date of the last block replica):
+In this example, we will define a one-line policy stack to protect replicas that have just been transferred (inferred by the creation date of the last block replica):
 
 .. code-block:: c
 
@@ -157,7 +157,7 @@ The Detox application has a *test run* option, where test policy files can be ev
 
 
 .. rubric:: Footnotes
-.. [#] ON the longer run siteDB will be replaced by CRIC.
+.. [#] On the longer run siteDB will be replaced by CRIC.
 .. [#] Actually there are a few more actions that can be taken. See the `Detox policy <https://github.com/SmartDataProjects/dynamo/blob/master/lib/detox/detoxpolicy.py>`_ module for details.
 .. [#] There are some corrections to the simple number of idle days to make sure that data that has just been copied it not deleted immediately and some adjustments for the size of the sample.
        
