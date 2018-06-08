@@ -5,7 +5,7 @@ After the installation of your Dynamo data management system, it is of course em
 
 **Once the server is running and user(s) have been added (last section) we are now only working as the owner of the above given certificate(s).**
 
-.. _AddStorageAnchor: Add Storage Sites
+.. _addstorage-ref:
 
 Add Storage Sites
 .................
