@@ -1,9 +1,9 @@
 Typical Operations
 ------------------
 
-Dynamo has been written to reduce the number of interactions of humans with the storage system to a minimum. The main task humans have to do is to write policies for the storage. Policies can be very simple but they can also offer a very flexible use of the storage accounting for many different requirements each setup implies. Making sure that the system has enough storage at its disposal is the other task that the operators have to perform.
+Dynamo has been written to reduce the number of interactions of humans with the storage system to a minimum. The main task for humans is to write policies for the storage. Policies can be very simple but they can also offer a very flexible use of the storage, accounting for many different requirements each setup implies. Making sure that the system has enough storage at its disposal is the other task that the operators have to perform.
 
-The task of adding new data to the system (injection) and invalidating data that are already in the system are occasionally done by hand so operators need to know how to do this safely. Even more rarely general deletion campaigns are useful to remove data from the system that really are not useful anymore. In CMS this process happens maybe twice a year after for example a big reprocessing has finished and users have moved away from the original processing. Deletion campaigns have to be approved by the physics organization and Dynamo offers a rich set of tools to study deletions following requirements on many different metadata.
+The task of adding new data to the system (injection) and invalidating data that are already in the system are occasionally done by hand, so operators need to know how to do this safely. Even more rarely general deletion campaigns are useful to remove data from the system that really are not useful anymore. In CMS, this process happens maybe twice a year after for example a big reprocessing has finished and users have moved away from the original processing. Deletion campaigns have to be approved by the physics organization and Dynamo offers a rich set of tools to study deletions following requirements on many different metadata.
 
 
 Policy Building Blocks
@@ -16,42 +16,54 @@ Policies are statements based on operators, regular expression matching and the 
  4. blockreplica
  5. dataset
 
-Their detailed description is given in `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
+Their detailed description is given `here <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_.
 
 
 Adding a Storage Site to the System
 ...................................
 
-In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site but in principle others exists. In Dynamo sites are maintained in a separate tabkle in the inventory. Sites can be added at runtime dynamo-inject and a json file. A full description is given in the ??? SECTION.
+In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site, but in principle others exist. In Dynamo, sites are represented as objects in the inventory. Sites can be added at runtime using tools like `dynamo-inject`. An example is given in the :ref:`Add Storage Sites` section.
 
-It is straight forward to write a tool to extract this information from an external database as to keep this information up-to-date.
+It is straightforward to write a tool to extract this information from an external database as to keep this information up-to-date.
 
 
-Setting Up a Basic Policy
-.........................
-
-It is important to note that the ordering in the policy file matters. Each sample is pushed through the policy stack and the moment a policy applies the sample is not processed further.
+Setting Up a Basic Detox Policy
+...............................
 
 For the following example we have a Tier-3 center with limited disk space and a Tier-2 center where more data can be kept. The analysis data can be entirely maintained inside the Tier-2 quota but the Tier-3 can not hold more than maybe a third. In the below policy stack we simply maintain the most popular samples on the Tier-3 site as long as they fit within the available quota. For the setup here we can assume that the Tier-2 site has a quota large enough to contain all data, thus deletion will never be triggered, but in principle if the usage would be pushed to the high watermark on the Tier-2, deletion of the least popular one should be the safest option. More sophisticated schemes can of course be setup.
 
-A basic policy always starts with setting up a Partition.
+First, the partition in which we operate has to be defined. Partition definitions are given in a file pointed to by the server configuration (`/etc/dynamo/server_config.json`) parameter `partition_def_path`, which is `/usr/local/dynamo/etc/default_partitions.txt` by default. In the file, there is already a partition named Default defined:
+
+.. code-block:: c
+
+   Default:  dataset.name == *
+
+which says everything (because * matches all dataset names) is included in the default partition. Each line of the partition definition file defines a partition, with a syntax `<Name>: <condition>`. The conditions are applied to *block replicas*, and all matching replicas are included in the partition. For this example we set up a partition named `MyCache`, which consists of all block replicas at the Tier-2 and Tier-3 sites:
+
+.. code-block:: c
+
+   MyCache:  site.name in [ T2_US_XYZ T3_US_XYZ ]
+
+We then proceed to building the Detox policy. Start a new file with declaring the Partition.
 
 .. code-block:: c
 
    Partition MyCache
 
-Define a number of storage sites this partition has access to.
+Define a number of storage sites this partition has access to. Because we defined our partition to be everything on these sites, this line is redundant, but is here for illustration purposes.
 
 .. code-block:: c
    
    On site.name in [ T2_US_XYZ T3_US_XYZ ]
 
-Set the high and low water mark to define the deletions.
+Set the deletion start and stop triggers (high and low water marks in this case).
 
 .. code-block:: c
    
    When site.occupancy > 0.9
    Until site.occupancy < 0.85
+
+Note that the above three line refer to *site attributes* (`site_variables` in the `variables.py <https://github.com/SmartDataProjects/dynamo/blob/master/lib/policy/variables.py>`_), whereas the rest of the policy file is written in terms of *replica attributes* (`replica_variables`).
 
 Set the default decision for potential deletion which is 'yes' dimiss.
 
@@ -59,11 +71,14 @@ Set the default decision for potential deletion which is 'yes' dimiss.
    
    Dismiss
 
-Now decide what should be deleted first. The setup here uses the rank of the dataset and if they are the same it starts with the small datasets first. The rank is a number which is calculated to indicate how popular the dataset is. The CMS definition is approximately [#]_ the number of days the dataset was not used (we call that the idle days). So, the higher the rank the less popular the sample is.
+Now decide what should be deleted first. The setup here uses the rank of the dataset. If two datasets have identical ranking, the smaller dataset is deleted first. The rank is a number which is calculated to indicate how popular the dataset is. The CMS definition is approximately [#]_ the number of days the dataset was not used (we call that the idle days). So, the higher the rank the less popular the sample is.
 
 .. code-block:: c
   
    Order decreasing dataset.usage_rank increasing replica.size
+
+In general, a *policy stack* is given in between the site trigger lines and the default decision. It is important to note that the ordering in the policy stack matters. Each sample is pushed through the policy stack and the moment a policy applies the sample is not processed further.
+
  
 Managing Quotas
 ...............

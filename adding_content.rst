@@ -12,8 +12,8 @@ We create a json file which specifies the storage sites. Here is a typical examp
   
     {"site":
      [
-      {"name": "T2_US_MIT", "host": "se01.cmsaf.mit.edu", "backend": "gsiftp://se01.cmsaf.mit.edu:2811/cms", "status": "ready"},
-      {"name": "T3_US_MIT", "host": "t3serv006.mit.edu", "backend": "srm://t3serv006.mit.edu:8443/srm/v2/server?SFN=/mnt/hadoop/cms", "status": "ready"}
+      {"name": "T2_US_XYZ", "host": "t2-storage.xyz.edu", "backend": "gsiftp://t2-storage.xyz.edu:2811/cms", "status": "ready"},
+      {"name": "T3_US_XYZ", "host": "t3-storage.xyz.edu", "backend": "srm://t3-storage.xyz.edu:8443/srm/v2/server?SFN=/mnt/hadoop/cms", "status": "ready"}
      ]
     }
 
@@ -27,7 +27,7 @@ Verify it was correctly uploaded:
 
    dynamo
    >>> inventory.sites
-   {'T3_US_MIT': Site('T3_US_MIT','t3serv006.mit.edu','disk','srm://t3serv006.mit.edu:8443/srm/v2/server?SFN=/mnt/hadoop/cms','ready',2), 'T2_US_MIT': Site('T2_US_MIT','se01.cmsaf.mit.edu','disk','gsiftp://se01.cmsaf.mit.edu:2811/cms','ready',1)}
+   {'T3_US_XYZ': Site('T3_US_XYZ','t3-storage.xyz.edu','disk','srm://t3-storage.xyz.edu:8443/srm/v2/server?SFN=/mnt/hadoop/cms','ready',2), 'T2_US_XYZ': Site('T2_US_XYZ','t2-storage.xyz.edu','disk','gsiftp://t2-storage.xyz.edu:2811/cms','ready',1)}
 
 
 Initial Data Injection
@@ -63,7 +63,7 @@ Assuming you have already a large amount of data that you would like Dynamo to m
      "datasetreplica":
       [
         {"dataset": "pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD",
-         "site": "T2_US_MIT",
+         "site": "T2_US_XYZ",
          "blockreplicas":
           [
             {"block": "48dbe0c6-36fa-11e8-a5e2-ac1f6b05e848", "last_update": 1528406008}
@@ -78,6 +78,6 @@ Verify it was correctly uploaded:
 
    dynamo
    >>> inventory.datasets
-   {'pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD': Dataset('pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD','production','unknown',('pandaf', '010'),1528406008,True,1)}
-   >>> inventory.datasets['pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD']
-   Dataset('pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD','production','unknown',('pandaf', '010'),1528406008,True,1)
+   {'pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD': Dataset('pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD','production','unknown','pandaf/010',1528406008,True,1)}
+   >>> inventory.datasets['pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD'].blocks
+   set([Block('48dbe0c6-36fa-11e8-a5e2-ac1f6b05e848','pandaf/010/DoubleMuon+Run2017F-31Mar2018-v1+MINIAOD',165438,2,True,1528406008,1,False)])
