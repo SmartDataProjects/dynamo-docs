@@ -22,7 +22,7 @@ Their detailed description is given `here <https://github.com/SmartDataProjects/
 Adding a Storage Site to the System
 ...................................
 
-In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site, but in principle others exist. In Dynamo, sites are represented as objects in the inventory. Sites can be added at runtime using tools like `dynamo-inject`. An example is given in the :doc:` <../adding_content>` section.
+In a distributed system like the one in CMS or ATLAS there are systems which keep track of the sites and their capabilities. In CMS there is a tool called siteDB [#]_ which can be used to pick up the various properties of a site, but in principle others exist. In Dynamo, sites are represented as objects in the inventory. Sites can be added at runtime using tools like `dynamo-inject`. An example is given in the :doc:` <../adding_content>`_ section.
 
 It is straightforward to write a tool to extract this information from an external database as to keep this information up-to-date.
 
