@@ -6,7 +6,7 @@ Dynamo - Dynamic Data Management System
    :height: 200px
    :scale: 50 %
    :alt: dynamo logo
-   :align: right
+   :align: left
 	   
 Dynamo is a Dynamic Data Management system that organizes and optimizes large scale data usage on storage systems with distributed storage sites (storage elements). It is designed to seamlessly integrate large number of storage sites even if the individual storage sites are very different in sizes. The data are assumed to be ordered in chunks that have some clear relation (datasets), and which share some common metadata that can be used to organize their usage.
 
