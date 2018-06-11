@@ -113,6 +113,22 @@ All users must be authorized before interacting with the Dynamo server. To add a
 
 The option `--role admin` creates a new role named `admin`. Roles are user attributes employed within Dynamo server user management scheme to control access to various resources. The last line specifies the authorization target. Further application-specific authorization can be added using the same script. See the `--help` option for more details.
 
+Add Permission to Set Quota
+...........................
+
+At least one user need to be able to set the quota for a declared site. Here is the sequence to set the permissions
+::
+   source /usr/local/dynamo/etc/profile.d/init.sh
+   dynamo-exec-auth --executable /usr/local/dynamo/utilities/set_quota.py --title set_quota [ --user <users authorized to execute> ]
+
+It is important to note that the title set with the --title can be any string. It will be referred to later though because it is tied to the executable from now on. To set a quota one would do something like the following, but you **first have to login as that user**:
+::
+   su - <user name>
+   dynamo '/usr/local/dynamo/utilities/set_quota.py --site T2_US_XYZ --partition Default --dump'
+   dynamo '/usr/local/dynamo/utilities/set_quota.py --site T2_US_XYZ --partition Default --volume 600' --write-request --title set_quota
+
+The second line will show the present quota for the given site so you can see what is there, the last line sets to the quota for the site 'T2_US_XYZ' to 600 TB. Please not it is important that the title matches the one given in authorization of the executable.
+
 
 Validate Full Setup
 ...................
