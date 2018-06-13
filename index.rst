@@ -17,6 +17,7 @@ As the package emerged from the CMS operations, it was initially coupled to the 
     conceptual_design
     components
     external_packages
+    ownership_and_permissions
     installation
     adding_content
     typical_operations
