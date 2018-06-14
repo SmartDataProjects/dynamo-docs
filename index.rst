@@ -21,6 +21,7 @@ As the package emerged from the CMS operations, it was initially coupled to the 
     installation
     adding_content
     typical_operations
+    user_data_concept
     implementation
 
 Indices and tables
