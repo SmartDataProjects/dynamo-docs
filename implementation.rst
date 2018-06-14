@@ -6,5 +6,8 @@ In the following section we will go into more detail of the various components a
 .. toctree::
     :maxdepth: 3
 
+    scheduler
     popularity
+    detox
     dealer
+    updater
