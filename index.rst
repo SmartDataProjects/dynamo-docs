@@ -21,7 +21,7 @@ As the package emerged from the CMS operations, it was initially coupled to the 
     installation
     adding_content
     typical_operations
-    
+    implementation
 
 Indices and tables
 ==================
