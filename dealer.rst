@@ -7,7 +7,7 @@ Before explaining the balancer, we should describe the Dealer architecture. Deal
   * undertaker, proposing transfers of protected data out of sites in the morgue state; and
   * balancer, proposing replications of last-copy data from sites with high protected fraction.
 
-The proposals are then collected by the central engine, which sorts them by the priorities assigned to each plugin (specified in the Dealer configuration file), and issues the transfer requests until the transfer volume hits the preset maximum. Unhandled proposals are dropped.
+The proposals are then collected by the central engine, which sorts them by the priorities assigned to each plugin (specified in the Dealer configuration file), and issues the transfer requests until the transfer volume hits the preset maximum. Unhandled proposals are dropped for this cycle. Requests for transfers are of course tracked and thus will come back in the next cycle of the regular sequence.
 
 The balancer is, as mentioned above, a Dealer plugin that proposes replicating last-copy datasets that reside in sites with high protection fraction. Replication results in balancing when combined with Detox, as illustrated in the following example.
 
