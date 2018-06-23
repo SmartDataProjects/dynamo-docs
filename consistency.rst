@@ -9,7 +9,7 @@ Missing files lead to failures of those jobs that try to access them, while orph
 
 As much as one wants to ensure such inconsistencies do not occur, with the complexity of the system and realistic site operations it is unrealistic to think a system can be designed to avoid them altogether. To mitigate the problem Dynamo provides a package that constantly checks and enforces consistencies by copying missing data or deleting data that is not supposed to be there.
 
-The package called dynamo-consistency is explained in detail in its `documentation pages <https://github.com/SmartDataProjects/dynamo-consistency/blob/master/README.rst>`.
+The package called dynamo-consistency is explained in detail in its `documentation pages <https://github.com/SmartDataProjects/dynamo-consistency/blob/master/README.rst>`_.
 
 .. rubric:: Footnotes
 .. [#] In CMS DBS is the ultimate source for the composition of any dataset.
