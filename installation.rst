@@ -3,6 +3,8 @@ Installation
 
 Presently our installation relies on the person installing having root access and performing a git clone operation and than a number of steps to setup the database, performing some configuration and then importing the data and validating the full setup. Please, make sure to login as root to perform the installation.
 
+.. _installation-ref:
+
 Prerequisites
 .............
 
